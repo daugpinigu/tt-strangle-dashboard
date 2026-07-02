@@ -80,6 +80,63 @@
   </div>
 </div>
 
+<!-- Statinė metodologijos sekcija - update.py jos neliečia (perrašo tik DATA bloką) -->
+<div class="card">
+  <h2>Kodėl atrenkami būtent šie vardai?</h2>
+
+  <p style="font-size:13px; line-height:1.6; margin-bottom:12px;">
+    <b>Atranka - algoritmas, ne nuomonė.</b> Universe fiksuotas eksperimento starte (2026-06-12): 28 large-cap
+    vardai su sektorine diversifikacija. Kasdien kiekvienam skaičiuojamas 1 metų IV Rank (CBOE), filtras:
+    IVR&ge;50 pilnas dydis, 30-50 pusė, &lt;30 - no trade. Kandidatai rūšiuojami pagal IVR mažėjančiai,
+    atidaroma iki 3 naujų per dieną. GOOGL / AMD / MSFT atsidarė 07-02 todėl, kad tą dieną turėjo
+    aukščiausią IVR visame universe - ne todėl, kad kažkuo "geresni".
+  </p>
+
+  <p style="font-size:13px; line-height:1.6; margin-bottom:12px;">
+    <b>Ar logika "aukštas IV = mažai judės"? Ne visai.</b> Strangle uždirba ne tada, kai akcija nejuda,
+    o kai juda <i>mažiau, nei opcionai įkainoja</i>. Aukštas IVR reiškia: premija to vardo istorijos
+    kontekste neįprastai brangi. Pvz. AMD ~78% IV įkainoja apie &plusmn;27% judesį per 45 dienų - strangle
+    pelningas, jei realizuotas judesys mažesnis. Statistinis pagrindas - variance risk premium: implied
+    vol istoriškai dažniau viršija vėliau realizuotą, nei atvirkščiai. Bet tai tikimybinis kraštas, ne
+    garantija: IVR 100 kartu reiškia, kad rinka kažko rimtai bijo.
+  </p>
+
+  <p style="font-size:13px; line-height:1.6; margin-bottom:10px;">
+    <b>Kodėl ne BE ar NBIS?</b> Sąžiningas atsakymas: ne dėl IVR. 2026-07-02 duomenimis jų IV irgi
+    metinėse viršūnėse - premija ten dar riebesnė. Bet universe sąmoningai sudarytas tik iš large-cap,
+    ir priežastis matosi vienoje lentelėje:
+  </p>
+
+  <table style="margin-bottom:12px;">
+    <thead><tr><th>Ticker</th><th>IV30 (07-02)</th><th>1y IV diapazonas</th><th>Blogiausias 1d judesys (3 metai)</th></tr></thead>
+    <tbody>
+      <tr><td><b>GOOGL</b></td><td>39%</td><td>25-44%</td><td>-9.5% / +10.2%</td></tr>
+      <tr><td><b>MSFT</b></td><td>42%</td><td>26-44%</td><td>-10.0% / +10.1%</td></tr>
+      <tr><td><b>BE</b></td><td>146%</td><td>66-146%</td><td>-24.8% / <span class="neg">+59.2%</span></td></tr>
+      <tr><td><b>NBIS</b></td><td>123%</td><td>64-121%</td><td><span class="neg">-37.4%</span> / +49.4%</td></tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:13px; line-height:1.6; margin-bottom:12px;">
+    16-delta strike'ai ramiai laiko &plusmn;10% gap'ą (GOOGL/MSFT istorinis blogiausias atvejis), bet ne
+    +59% (BE) ar -37% (NBIS) per vieną dieną. Short strangle rizika asimetrinė: premija ribota, nuostolis - ne.
+    Stop loss "2x credit" popieriuje neapsaugo nuo gap'o PER stop'ą - akcija atsidaro jau už jo, ir nuostolis
+    būna 5-10x credit vietoj planuoto 1x. Vienas toks įvykis suvalgo daugelio mėnesių premijas. BE 146% IV
+    yra ne dovana, o kaina: rinka žino apie binarinius eventus ir už juos moka. Antra priežastis - likvidumas:
+    tolimų 16-delta sparnų OI ir spreadai large-cap varduose leidžia realistiškus fill'us, mažuose - dažnai ne.
+  </p>
+
+  <p style="font-size:13px; line-height:1.6; margin-bottom:0;">
+    <b>Metodologinė riba.</b> Eksperimentas testuoja konkretų klausimą: ar diversifikuotas premium selling
+    ant kokybiškų pavienių vardų replikuoja indeksinį rezultatą, ar idiosinkratinis gap risk jį sugriauna.
+    Įmaišius junk-vol vardus (BE/NBIS tipo), testuotume jau kitą strategiją su kitu rizikos profiliu -
+    tam reikėtų atskiro eksperimento. Universe keitimas vidury kelio būtų goalpost stumdymas. Ir svarbiausia:
+    6-12 mėn be gap'o <i>neįrodo</i>, kad gap rizikos nėra (peso problema) - todėl kiekviena pozicija turi
+    stress stulpelį su blogiausiu istoriniu scenarijumi.
+  </p>
+  <div class="note">Skaičiai lentelėje - 2026-07-02 snapshot (CBOE delayed + Yahoo 3 metų istorija; NBIS - nuo listingo, ~1.7 m.). Neatnaujinami automatiškai.</div>
+</div>
+
 <script>
 // ============================================================
 // DUOMENYS - kanoninis saltinis: data.json. Si bloka automatiskai
