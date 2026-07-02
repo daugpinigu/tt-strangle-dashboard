@@ -148,8 +148,8 @@
 const DATA = {
   "meta": {
     "startDate": "2026-06-12",
-    "lastUpdate": "2026-07-02 (auto #15)",
-    "runCount": 15,
+    "lastUpdate": "2026-07-02 (auto #16)",
+    "runCount": 16,
     "accountStart": 100000,
     "spyStartPrice": 737.76,
     "qqqStartPrice": 717.12,
@@ -218,9 +218,9 @@ const DATA = {
     },
     {
       "date": "2026-07-02",
-      "strategy": 101763,
-      "spy": 100697,
-      "qqq": 99148
+      "strategy": 101764,
+      "spy": 100533,
+      "qqq": 98921
     }
   ],
   "openPositions": [
@@ -240,7 +240,7 @@ const DATA = {
       "putDelta": -0.169,
       "putPremium": 4.85,
       "credit": 8.57,
-      "currentCost": 8.88,
+      "currentCost": 8.8,
       "contracts": 1,
       "bpRegT": 4414,
       "stopCost": 17.14,
@@ -250,8 +250,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (auto)",
       "stressWorstGap": -857,
       "notes": "AUTO entry. IVR=70.1 (CBOE-1y; entry metu klaidingai 100 del 63d lango artefakto). worst 3y 1d gap 10.2%. earnings NEPATVIRTINTA (headless). full size.",
-      "pnl": -31,
-      "spotNow": 358.385
+      "pnl": -23,
+      "spotNow": 358.25
     },
     {
       "id": 5,
@@ -269,7 +269,7 @@ const DATA = {
       "putDelta": -0.151,
       "putPremium": 13.95,
       "credit": 25.65,
-      "currentCost": 26.3,
+      "currentCost": 26.17,
       "contracts": 1,
       "bpRegT": 7749,
       "stopCost": 51.3,
@@ -279,8 +279,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (auto)",
       "stressWorstGap": -3076,
       "notes": "AUTO entry. IVR=100.0 (CBOE-1y; entry metu klaidingai 100 del 63d lango artefakto). worst 3y 1d gap 23.8%. earnings NEPATVIRTINTA (headless). full size.",
-      "pnl": -65,
-      "spotNow": 512.346
+      "pnl": -52,
+      "spotNow": 512.47
     },
     {
       "id": 6,
@@ -309,7 +309,7 @@ const DATA = {
       "stressWorstGap": -1047,
       "notes": "AUTO entry. IVR=97.8 (CBOE-1y; entry metu klaidingai 97.2 del 63d lango artefakto). worst 3y 1d gap 10.1%. earnings NEPATVIRTINTA (headless). full size.",
       "pnl": 15,
-      "spotNow": 391.03
+      "spotNow": 390.57
     },
     {
       "id": 7,
@@ -327,7 +327,7 @@ const DATA = {
       "putDelta": -0.154,
       "putPremium": 8.175,
       "credit": 15.4,
-      "currentCost": 15.4,
+      "currentCost": 15.6,
       "contracts": 1,
       "bpRegT": 7391,
       "stopCost": 30.8,
@@ -337,8 +337,37 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (rankinis ramp-up)",
       "stressWorstGap": -5418,
       "notes": "RANKINIS ramp-up entry (Radoslav 2026-07-02: per letas BP deployment). IVR=90.6 (CBOE-1y). worst 3y 1d gap 20.3%. earnings TIKETINA cikle (istorinis kalendorius: META ~07-30), headless nepatvirtinta.",
+      "pnl": -20,
+      "spotNow": 584.46
+    },
+    {
+      "id": 8,
+      "ticker": "MCD",
+      "opened": "2026-07-02",
+      "expiry": "2026-08-21",
+      "dte": 50,
+      "dteLeft": 50,
+      "ivr": 80.6,
+      "spotOpen": 277.79,
+      "callStrike": 305.0,
+      "callDelta": 0.17,
+      "callPremium": 2.095,
+      "putStrike": 255.0,
+      "putDelta": -0.154,
+      "putPremium": 2.105,
+      "credit": 4.2,
+      "currentCost": 4.2,
+      "contracts": 1,
+      "bpRegT": 3697,
+      "stopCost": 8.4,
+      "targetCost": 2.1,
+      "sizeMode": "full",
+      "earningsInCycle": true,
+      "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (rankinis ramp-up #2)",
+      "stressWorstGap": -420,
+      "notes": "RANKINIS ramp-up #2 (Radoslav 2026-07-02 vakaras). IVR=80.6 (CBOE-1y). Pirmas ne-tech knygoje. worst 3y 1d gap 5.7%. earnings TIKETINA cikle (~07 pab), headless nepatvirtinta.",
       "pnl": 0,
-      "spotNow": 585.065
+      "spotNow": 277.7899
     }
   ],
   "closedTrades": [
@@ -517,12 +546,48 @@ const DATA = {
       "ticker": "CAT",
       "ivr": 93.9,
       "reason": "likvidumas: C ok / OI 26<50"
+    },
+    {
+      "date": "2026-07-02",
+      "ticker": "BAC",
+      "ivr": 29.7,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-07-02",
+      "ticker": "GS",
+      "ivr": 59.7,
+      "reason": "likvidumas: OI 27<50 / P ok"
+    },
+    {
+      "date": "2026-07-02",
+      "ticker": "CVX",
+      "ivr": 63.5,
+      "reason": "likvidumas: C ok / spread 42%>40%"
+    },
+    {
+      "date": "2026-07-02",
+      "ticker": "JNJ",
+      "ivr": 90.5,
+      "reason": "likvidumas: spread 49%>40% / P ok"
+    },
+    {
+      "date": "2026-07-02",
+      "ticker": "PFE",
+      "ivr": 17.1,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-07-02",
+      "ticker": "CAT",
+      "ivr": 93.9,
+      "reason": "likvidumas: C ok / OI 26<50"
     }
   ],
   "stressTest": {
     "asOf": "2026-07-02",
-    "worstCasePnl": -10398,
-    "note": "AUTO (entry.stress_pnl): kiekvienam vardui blogiausias 3y 1d gap -> IV spike -> SL ~-1x credit + intrinsic breach. META -5.4k dominuoja (20.3% worst gap). Apytiksle, rankinis review tikslina."
+    "worstCasePnl": -10818,
+    "note": "AUTO (entry.stress_pnl): blogiausias 3y 1d gap -> IV spike -> SL ~-1x credit + intrinsic breach. Apytiksle, rankinis review tikslina."
   }
 };
 // === DATA END ===
