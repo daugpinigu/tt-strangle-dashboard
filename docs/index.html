@@ -91,8 +91,8 @@
 const DATA = {
   "meta": {
     "startDate": "2026-06-12",
-    "lastUpdate": "2026-07-02 (auto #13)",
-    "runCount": 13,
+    "lastUpdate": "2026-07-02 (auto #14)",
+    "runCount": 14,
     "accountStart": 100000,
     "spyStartPrice": 737.76,
     "qqqStartPrice": 717.12,
@@ -161,9 +161,9 @@ const DATA = {
     },
     {
       "date": "2026-07-02",
-      "strategy": 101866,
-      "spy": 100896,
-      "qqq": 99693
+      "strategy": 101785,
+      "spy": 100710,
+      "qqq": 99278
     }
   ],
   "openPositions": [
@@ -174,7 +174,7 @@ const DATA = {
       "expiry": "2026-08-21",
       "dte": 50,
       "dteLeft": 50,
-      "ivr": 100.0,
+      "ivr": 70.1,
       "spotOpen": 355.7,
       "callStrike": 415.0,
       "callDelta": 0.158,
@@ -183,18 +183,18 @@ const DATA = {
       "putDelta": -0.169,
       "putPremium": 4.85,
       "credit": 8.57,
-      "currentCost": 8.55,
+      "currentCost": 8.78,
       "contracts": 1,
       "bpRegT": 4414,
       "stopCost": 17.14,
       "targetCost": 4.29,
       "sizeMode": "full",
       "earningsInCycle": null,
-      "dataSource": "CBOE delayed + self IV(win=63) IVR + Yahoo stress (auto)",
+      "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (auto)",
       "stressWorstGap": -857,
-      "notes": "AUTO entry. IVR=100.0 (rank per 63d lango). worst 3y 1d gap 10.2%. earnings NEPATVIRTINTA (headless). full size.",
-      "pnl": 2,
-      "spotNow": 355.95
+      "notes": "AUTO entry. IVR=70.1 (CBOE-1y; entry metu klaidingai 100 del 63d lango artefakto). worst 3y 1d gap 10.2%. earnings NEPATVIRTINTA (headless). full size.",
+      "pnl": -21,
+      "spotNow": 354.97
     },
     {
       "id": 5,
@@ -212,18 +212,18 @@ const DATA = {
       "putDelta": -0.151,
       "putPremium": 13.95,
       "credit": 25.65,
-      "currentCost": 25.52,
+      "currentCost": 26.05,
       "contracts": 1,
       "bpRegT": 7749,
       "stopCost": 51.3,
       "targetCost": 12.82,
       "sizeMode": "full",
       "earningsInCycle": null,
-      "dataSource": "CBOE delayed + self IV(win=63) IVR + Yahoo stress (auto)",
+      "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (auto)",
       "stressWorstGap": -3076,
-      "notes": "AUTO entry. IVR=100.0 (rank per 63d lango). worst 3y 1d gap 23.8%. earnings NEPATVIRTINTA (headless). full size.",
-      "pnl": 13,
-      "spotNow": 517.61
+      "notes": "AUTO entry. IVR=100.0 (CBOE-1y; entry metu klaidingai 100 del 63d lango artefakto). worst 3y 1d gap 23.8%. earnings NEPATVIRTINTA (headless). full size.",
+      "pnl": -40,
+      "spotNow": 513.355
     },
     {
       "id": 6,
@@ -232,7 +232,7 @@ const DATA = {
       "expiry": "2026-08-21",
       "dte": 50,
       "dteLeft": 50,
-      "ivr": 97.2,
+      "ivr": 97.8,
       "spotOpen": 388.24,
       "callStrike": 460.0,
       "callDelta": 0.165,
@@ -241,18 +241,18 @@ const DATA = {
       "putDelta": -0.167,
       "putPremium": 5.6,
       "credit": 10.47,
-      "currentCost": 10.4,
+      "currentCost": 10.45,
       "contracts": 1,
       "bpRegT": 4930,
       "stopCost": 20.94,
       "targetCost": 5.24,
       "sizeMode": "full",
       "earningsInCycle": null,
-      "dataSource": "CBOE delayed + self IV(win=63) IVR + Yahoo stress (auto)",
+      "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (auto)",
       "stressWorstGap": -1047,
-      "notes": "AUTO entry. IVR=97.2 (rank per 63d lango). worst 3y 1d gap 10.1%. earnings NEPATVIRTINTA (headless). full size.",
-      "pnl": 7,
-      "spotNow": 388.98
+      "notes": "AUTO entry. IVR=97.8 (CBOE-1y; entry metu klaidingai 97.2 del 63d lango artefakto). worst 3y 1d gap 10.1%. earnings NEPATVIRTINTA (headless). full size.",
+      "pnl": 2,
+      "spotNow": 389.952
     }
   ],
   "closedTrades": [
@@ -362,135 +362,39 @@ const DATA = {
     },
     {
       "date": "2026-07-02",
-      "ticker": "JPM",
-      "ivr": 24.4,
+      "ticker": "NVDA",
+      "ivr": 29.8,
       "reason": "IVR<30 (filtras)"
     },
     {
       "date": "2026-07-02",
       "ticker": "BAC",
-      "ivr": 13.4,
+      "ivr": 27.8,
       "reason": "IVR<30 (filtras)"
     },
     {
       "date": "2026-07-02",
       "ticker": "GS",
-      "ivr": 65.6,
+      "ivr": 59.7,
       "reason": "likvidumas: OI 27<50 / P ok"
     },
     {
       "date": "2026-07-02",
-      "ticker": "XOM",
-      "ivr": 10.5,
-      "reason": "IVR<30 (filtras)"
-    },
-    {
-      "date": "2026-07-02",
       "ticker": "CVX",
-      "ivr": 21.3,
-      "reason": "IVR<30 (filtras)"
-    },
-    {
-      "date": "2026-07-02",
-      "ticker": "OXY",
-      "ivr": 2.3,
-      "reason": "IVR<30 (filtras)"
+      "ivr": 63.5,
+      "reason": "likvidumas: C ok / spread 42%>40%"
     },
     {
       "date": "2026-07-02",
       "ticker": "JNJ",
-      "ivr": 94.0,
+      "ivr": 90.5,
       "reason": "likvidumas: spread 49%>40% / P ok"
     },
     {
       "date": "2026-07-02",
       "ticker": "PFE",
-      "ivr": 8.0,
+      "ivr": 20.9,
       "reason": "IVR<30 (filtras)"
-    },
-    {
-      "date": "2026-07-02",
-      "ticker": "WMT",
-      "ivr": 5.4,
-      "reason": "IVR<30 (filtras)"
-    },
-    {
-      "date": "2026-07-02",
-      "ticker": "NKE",
-      "ivr": 12.0,
-      "reason": "IVR<30 (filtras)"
-    },
-    {
-      "date": "2026-07-02",
-      "ticker": "CAT",
-      "ivr": 92.6,
-      "reason": "likvidumas: C ok / OI 21<50"
-    },
-    {
-      "date": "2026-07-02",
-      "ticker": "JPM",
-      "ivr": 24.4,
-      "reason": "IVR<30 (filtras)"
-    },
-    {
-      "date": "2026-07-02",
-      "ticker": "BAC",
-      "ivr": 13.4,
-      "reason": "IVR<30 (filtras)"
-    },
-    {
-      "date": "2026-07-02",
-      "ticker": "GS",
-      "ivr": 65.6,
-      "reason": "likvidumas: OI 27<50 / P ok"
-    },
-    {
-      "date": "2026-07-02",
-      "ticker": "XOM",
-      "ivr": 10.5,
-      "reason": "IVR<30 (filtras)"
-    },
-    {
-      "date": "2026-07-02",
-      "ticker": "CVX",
-      "ivr": 21.3,
-      "reason": "IVR<30 (filtras)"
-    },
-    {
-      "date": "2026-07-02",
-      "ticker": "OXY",
-      "ivr": 0.0,
-      "reason": "IVR<30 (filtras)"
-    },
-    {
-      "date": "2026-07-02",
-      "ticker": "JNJ",
-      "ivr": 94.0,
-      "reason": "likvidumas: spread 49%>40% / P ok"
-    },
-    {
-      "date": "2026-07-02",
-      "ticker": "PFE",
-      "ivr": 5.8,
-      "reason": "IVR<30 (filtras)"
-    },
-    {
-      "date": "2026-07-02",
-      "ticker": "WMT",
-      "ivr": 3.3,
-      "reason": "IVR<30 (filtras)"
-    },
-    {
-      "date": "2026-07-02",
-      "ticker": "NKE",
-      "ivr": 11.4,
-      "reason": "IVR<30 (filtras)"
-    },
-    {
-      "date": "2026-07-02",
-      "ticker": "CAT",
-      "ivr": 92.6,
-      "reason": "likvidumas: C ok / OI 21<50"
     }
   ],
   "stressTest": {
