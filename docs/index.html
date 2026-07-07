@@ -148,7 +148,7 @@
 const DATA = {
   "meta": {
     "startDate": "2026-06-12",
-    "lastUpdate": "2026-07-07 20:25 (intraday, po auto #20)",
+    "lastUpdate": "2026-07-07 20:33 (intraday, po auto #20)",
     "runCount": 20,
     "accountStart": 100000,
     "spyStartPrice": 737.76,
@@ -236,9 +236,9 @@ const DATA = {
     },
     {
       "date": "2026-07-07",
-      "strategy": 102655,
-      "spy": 101533,
-      "qqq": 99505
+      "strategy": 102112,
+      "spy": 101456,
+      "qqq": 99328
     }
   ],
   "openPositions": [
@@ -258,7 +258,7 @@ const DATA = {
       "putDelta": -0.169,
       "putPremium": 4.85,
       "credit": 8.57,
-      "currentCost": 8.65,
+      "currentCost": 8.67,
       "contracts": 1,
       "bpRegT": 4414,
       "stopCost": 17.14,
@@ -268,8 +268,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (auto)",
       "stressWorstGap": -857,
       "notes": "AUTO entry. IVR=70.1 (CBOE-1y; entry metu klaidingai 100 del 63d lango artefakto). worst 3y 1d gap 10.2%. earnings NEPATVIRTINTA (headless). full size.",
-      "pnl": -8,
-      "spotNow": 369.555
+      "pnl": -10,
+      "spotNow": 369.505
     },
     {
       "id": 5,
@@ -287,7 +287,7 @@ const DATA = {
       "putDelta": -0.151,
       "putPremium": 13.95,
       "credit": 25.65,
-      "currentCost": 25.27,
+      "currentCost": 25.22,
       "contracts": 1,
       "bpRegT": 7749,
       "stopCost": 51.3,
@@ -297,8 +297,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (auto)",
       "stressWorstGap": -3076,
       "notes": "AUTO entry. IVR=100.0 (CBOE-1y; entry metu klaidingai 100 del 63d lango artefakto). worst 3y 1d gap 23.8%. earnings NEPATVIRTINTA (headless). full size.",
-      "pnl": 38,
-      "spotNow": 522.425
+      "pnl": 43,
+      "spotNow": 520.24
     },
     {
       "id": 6,
@@ -327,7 +327,7 @@ const DATA = {
       "stressWorstGap": -1047,
       "notes": "AUTO entry. IVR=97.8 (CBOE-1y; entry metu klaidingai 97.2 del 63d lango artefakto). worst 3y 1d gap 10.1%. earnings NEPATVIRTINTA (headless). full size.",
       "pnl": 69,
-      "spotNow": 393.65
+      "spotNow": 393.07
     },
     {
       "id": 7,
@@ -345,7 +345,7 @@ const DATA = {
       "putDelta": -0.154,
       "putPremium": 8.175,
       "credit": 15.4,
-      "currentCost": 15.45,
+      "currentCost": 15.5,
       "contracts": 1,
       "bpRegT": 7391,
       "stopCost": 30.8,
@@ -355,8 +355,37 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (rankinis ramp-up)",
       "stressWorstGap": -5418,
       "notes": "RANKINIS ramp-up entry (Radoslav 2026-07-02: per letas BP deployment). IVR=90.6 (CBOE-1y). worst 3y 1d gap 20.3%. earnings TIKETINA cikle (istorinis kalendorius: META ~07-30), headless nepatvirtinta.",
-      "pnl": -5,
-      "spotNow": 604.89
+      "pnl": -10,
+      "spotNow": 605.02
+    },
+    {
+      "id": 8,
+      "ticker": "MCD",
+      "opened": "2026-07-02",
+      "expiry": "2026-08-21",
+      "dte": 50,
+      "dteLeft": 45,
+      "ivr": 80.6,
+      "spotOpen": 277.79,
+      "callStrike": 305.0,
+      "callDelta": 0.17,
+      "callPremium": 2.095,
+      "putStrike": 255.0,
+      "putDelta": -0.154,
+      "putPremium": 2.105,
+      "credit": 4.2,
+      "currentCost": 4.41,
+      "contracts": 1,
+      "bpRegT": 3697,
+      "stopCost": 8.4,
+      "targetCost": 2.1,
+      "sizeMode": "full",
+      "earningsInCycle": true,
+      "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (rankinis ramp-up #2)",
+      "stressWorstGap": -420,
+      "notes": "RANKINIS ramp-up #2 (Radoslav 2026-07-02 vakaras). IVR=80.6 (CBOE-1y). Pirmas ne-tech knygoje. worst 3y 1d gap 5.7%. earnings TIKETINA cikle (~07 pab), headless nepatvirtinta.",
+      "pnl": -21,
+      "spotNow": 282.42
     },
     {
       "id": 9,
@@ -374,7 +403,7 @@ const DATA = {
       "putDelta": -0.174,
       "putPremium": 3.35,
       "credit": 5.44,
-      "currentCost": 4.47,
+      "currentCost": 4.5,
       "contracts": 1,
       "bpRegT": 3899,
       "stopCost": 10.88,
@@ -384,8 +413,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (rankinis ramp-up #3, pries 07-03 svente)",
       "stressWorstGap": -2460,
       "notes": "RANKINIS ramp-up #3 pries ilga savaitgali (07-03 NYSE uzdaryta, 07-04 sestad). IVR=71.8 (CBOE-1y). theta ~$16/d. worst 3y 1d gap 15.3%. earnings TIKETINA cikle (~07 pab / 08 prad).",
-      "pnl": 97,
-      "spotNow": 312.42
+      "pnl": 94,
+      "spotNow": 312.815
     },
     {
       "id": 10,
@@ -403,7 +432,7 @@ const DATA = {
       "putDelta": -0.147,
       "putPremium": 3.1,
       "credit": 6.14,
-      "currentCost": 5.94,
+      "currentCost": 5.93,
       "contracts": 1,
       "bpRegT": 3049,
       "stopCost": 12.28,
@@ -413,8 +442,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (rankinis ramp-up #3, pries 07-03 svente)",
       "stressWorstGap": -614,
       "notes": "RANKINIS ramp-up #3 pries ilga savaitgali (07-03 NYSE uzdaryta, 07-04 sestad). IVR=63.6 (CBOE-1y). theta ~$18/d. worst 3y 1d gap 12.0%. earnings TIKETINA cikle (~07 pab / 08 prad).",
-      "pnl": 20,
-      "spotNow": 245.13
+      "pnl": 21,
+      "spotNow": 245.02
     },
     {
       "id": 11,
@@ -490,7 +519,7 @@ const DATA = {
       "putDelta": -0.164,
       "putPremium": 5.025,
       "credit": 8.82,
-      "currentCost": 7.67,
+      "currentCost": 7.68,
       "contracts": 1,
       "bpRegT": 2540,
       "stopCost": 17.64,
@@ -500,8 +529,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (auto)",
       "stressWorstGap": -2468,
       "notes": "AUTO entry. IVR=63.0 (CBOE-1y). worst 3y 1d gap 31.1%. earnings NEPATVIRTINTA (headless). full size.",
-      "pnl": 115,
-      "spotNow": 167.25
+      "pnl": 114,
+      "spotNow": 165.68
     },
     {
       "id": 14,
@@ -519,7 +548,7 @@ const DATA = {
       "putDelta": -0.16,
       "putPremium": 2.77,
       "credit": 5.29,
-      "currentCost": 4.96,
+      "currentCost": 4.88,
       "contracts": 1,
       "bpRegT": 2790,
       "stopCost": 10.58,
@@ -529,8 +558,37 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (auto)",
       "stressWorstGap": -1402,
       "notes": "AUTO entry. IVR=61.6 (CBOE-1y). worst 3y 1d gap 15.4%. earnings NEPATVIRTINTA (headless). full size.",
-      "pnl": 33,
-      "spotNow": 232.5901
+      "pnl": 41,
+      "spotNow": 232.31
+    },
+    {
+      "id": 15,
+      "ticker": "KO",
+      "opened": "2026-07-06",
+      "expiry": "2026-08-21",
+      "dte": 46,
+      "dteLeft": 45,
+      "ivr": 79.3,
+      "spotOpen": 82.99,
+      "callStrike": 90.0,
+      "callDelta": 0.171,
+      "callPremium": 0.53,
+      "putStrike": 77.5,
+      "putDelta": -0.175,
+      "putPremium": 0.67,
+      "credit": 1.2,
+      "currentCost": 1.27,
+      "contracts": 1,
+      "bpRegT": 1231,
+      "stopCost": 2.4,
+      "targetCost": 0.6,
+      "sizeMode": "full",
+      "earningsInCycle": null,
+      "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (auto)",
+      "stressWorstGap": -120,
+      "notes": "AUTO entry. IVR=79.3 (CBOE-1y). worst 3y 1d gap 4.8%. earnings NEPATVIRTINTA (headless). full size.",
+      "pnl": -7,
+      "spotNow": 84.12
     },
     {
       "id": 16,
@@ -548,7 +606,7 @@ const DATA = {
       "putDelta": -0.168,
       "putPremium": 2.94,
       "credit": 5.25,
-      "currentCost": 5.33,
+      "currentCost": 5.31,
       "contracts": 1,
       "bpRegT": 1851,
       "stopCost": 10.5,
@@ -558,8 +616,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (auto)",
       "stressWorstGap": -2349,
       "notes": "AUTO entry. IVR=62.1 (CBOE-1y). worst 3y 1d gap 30.8%. earnings NEPATVIRTINTA (headless). full size.",
-      "pnl": -8,
-      "spotNow": 137.15
+      "pnl": -6,
+      "spotNow": 136.92
     },
     {
       "id": 17,
@@ -588,7 +646,7 @@ const DATA = {
       "stressWorstGap": -88,
       "notes": "AUTO entry. IVR=53.9 (CBOE-1y). worst 3y 1d gap 20.2%. earnings NEPATVIRTINTA (headless). full size.",
       "pnl": -3,
-      "spotNow": 18.1599
+      "spotNow": 18.0668
     }
   ],
   "closedTrades": [
@@ -686,70 +744,6 @@ const DATA = {
       "spotNow": 355.99,
       "closed": "2026-06-30",
       "closeCost": 3.49,
-      "reason": "50% profit (TP)"
-    },
-    {
-      "id": 8,
-      "ticker": "MCD",
-      "opened": "2026-07-02",
-      "expiry": "2026-08-21",
-      "dte": 50,
-      "dteLeft": 45,
-      "ivr": 80.6,
-      "spotOpen": 277.79,
-      "callStrike": 305.0,
-      "callDelta": 0.17,
-      "callPremium": 2.095,
-      "putStrike": 255.0,
-      "putDelta": -0.154,
-      "putPremium": 2.105,
-      "credit": 4.2,
-      "currentCost": 0.0,
-      "contracts": 1,
-      "bpRegT": 3697,
-      "stopCost": 8.4,
-      "targetCost": 2.1,
-      "sizeMode": "full",
-      "earningsInCycle": true,
-      "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (rankinis ramp-up #2)",
-      "stressWorstGap": -420,
-      "notes": "RANKINIS ramp-up #2 (Radoslav 2026-07-02 vakaras). IVR=80.6 (CBOE-1y). Pirmas ne-tech knygoje. worst 3y 1d gap 5.7%. earnings TIKETINA cikle (~07 pab), headless nepatvirtinta.",
-      "pnl": 410,
-      "spotNow": 283.01,
-      "closed": "2026-07-07",
-      "closeCost": 0.1,
-      "reason": "50% profit (TP)"
-    },
-    {
-      "id": 15,
-      "ticker": "KO",
-      "opened": "2026-07-06",
-      "expiry": "2026-08-21",
-      "dte": 46,
-      "dteLeft": 45,
-      "ivr": 79.3,
-      "spotOpen": 82.99,
-      "callStrike": 90.0,
-      "callDelta": 0.171,
-      "callPremium": 0.53,
-      "putStrike": 77.5,
-      "putDelta": -0.175,
-      "putPremium": 0.67,
-      "credit": 1.2,
-      "currentCost": 0.0,
-      "contracts": 1,
-      "bpRegT": 1231,
-      "stopCost": 2.4,
-      "targetCost": 0.6,
-      "sizeMode": "full",
-      "earningsInCycle": null,
-      "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (auto)",
-      "stressWorstGap": -120,
-      "notes": "AUTO entry. IVR=79.3 (CBOE-1y). worst 3y 1d gap 4.8%. earnings NEPATVIRTINTA (headless). full size.",
-      "pnl": 110,
-      "spotNow": 84.5,
-      "closed": "2026-07-07",
-      "closeCost": 0.1,
       "reason": "50% profit (TP)"
     }
   ],
