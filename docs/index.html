@@ -2433,7 +2433,8 @@ renderTable("openTable", DATA.openPositions, [
   { h: "Ticker", f: p => "<b>" + p.ticker + "</b>" + (p.earningsInCycle ? ' <span class="badge earnings">earnings</span>' : "") },
   { h: "Atidaryta", f: p => p.opened + ' <span class="muted">(' + (p.dte - p.dteLeft) + 'd atvira)</span>' },
   { h: "Strikes", f: p => p.putStrike + "P / " + p.callStrike + "C" },
-  { h: "Credit", f: p => "$" + p.credit.toFixed(2) },
+  { h: "Kontr.", f: p => (p.contracts || 1) + "x" },
+  { h: "Credit", f: p => "$" + p.credit.toFixed(2) + ((p.contracts || 1) > 1 ? ' <span class="muted">($' + Math.round(p.credit * 100 * p.contracts).toLocaleString("en-US") + ')</span>' : "") },
   { h: "DTE liko", f: p => p.dteLeft <= 21 ? '<span class="badge time">' + p.dteLeft + '</span>' : p.dteLeft },
   { h: "IVR", f: p => p.ivr },
   { h: "BP", f: p => fmt$(p.bpRegT) },
@@ -2443,6 +2444,7 @@ renderTable("openTable", DATA.openPositions, [
 
 renderTable("closedTable", closed, [
   { h: "Ticker", f: t => "<b>" + t.ticker + "</b>" },
+  { h: "Kontr.", f: t => (t.contracts || 1) + "x" },
   { h: "Atidaryta", f: t => t.opened },
   { h: "Uždaryta", f: t => t.closed + ' <span class="muted">(' + (t.dte - t.dteLeft) + 'd laikyta)</span>' },
   { h: "Priežastis", f: t => '<span class="badge ' + (t.pnl >= 0 ? "profit" : "loss") + '">' + t.reason + '</span>' },
