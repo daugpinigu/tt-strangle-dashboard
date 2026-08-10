@@ -149,8 +149,8 @@
 const DATA = {
   "meta": {
     "startDate": "2026-06-12",
-    "lastUpdate": "2026-08-10 19:40 (intraday, po auto #40)",
-    "runCount": 40,
+    "lastUpdate": "2026-08-10 19:53 (auto #41)",
+    "runCount": 41,
     "accountStart": 100000,
     "spyStartPrice": 737.76,
     "qqqStartPrice": 717.12,
@@ -381,9 +381,9 @@ const DATA = {
     },
     {
       "date": "2026-08-10",
-      "strategy": 105557,
-      "spy": 104869,
-      "qqq": 100830
+      "strategy": 105545,
+      "spy": 104710,
+      "qqq": 100618
     }
   ],
   "openPositions": [
@@ -432,7 +432,7 @@ const DATA = {
       "putDelta": -0.158,
       "putPremium": 1.13,
       "credit": 2.13,
-      "currentCost": 1.56,
+      "currentCost": 1.55,
       "contracts": 1,
       "bpRegT": 1326,
       "stopCost": 4.26,
@@ -442,8 +442,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (auto)",
       "stressWorstGap": -213,
       "notes": "AUTO entry. IVR=72.6 (CBOE-1y). worst 3y 1d gap 9.5%. earnings NEPATVIRTINTA (headless). full size.",
-      "pnl": 57,
-      "spotNow": 111.67
+      "pnl": 58,
+      "spotNow": 111.725
     },
     {
       "id": 28,
@@ -490,7 +490,7 @@ const DATA = {
       "putDelta": -0.158,
       "putPremium": 2.745,
       "credit": 5.16,
-      "currentCost": 3.33,
+      "currentCost": 3.35,
       "contracts": 2,
       "bpRegT": 7602,
       "stopCost": 10.32,
@@ -500,8 +500,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (auto)",
       "stressWorstGap": -4775,
       "notes": "AUTO entry. IVR=62.9 (CBOE-1y). worst 3y 1d gap 15.3%. earnings NEPATVIRTINTA (headless). full size, 2x kontraktai (risk-sizing ~1.5%).",
-      "pnl": 366,
-      "spotNow": 305.6391
+      "pnl": 362,
+      "spotNow": 305.46
     },
     {
       "id": 30,
@@ -548,7 +548,7 @@ const DATA = {
       "putDelta": -0.146,
       "putPremium": 2.93,
       "credit": 5.94,
-      "currentCost": 4.28,
+      "currentCost": 4.37,
       "contracts": 1,
       "bpRegT": 2095,
       "stopCost": 11.88,
@@ -558,8 +558,95 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (auto)",
       "stressWorstGap": -2251,
       "notes": "AUTO entry. IVR=48.1 (CBOE-1y). worst 3y 1d gap 31.1%. earnings NEPATVIRTINTA (headless). half size, 1x kontraktai (risk-sizing ~1.5%).",
-      "pnl": 166,
-      "spotNow": 149.9
+      "pnl": 157,
+      "spotNow": 149.75
+    },
+    {
+      "id": 32,
+      "ticker": "CAT",
+      "opened": "2026-08-10",
+      "expiry": "2026-09-18",
+      "dte": 39,
+      "dteLeft": 39,
+      "ivr": 55.0,
+      "spotOpen": 840.81,
+      "callStrike": 980.0,
+      "callDelta": 0.152,
+      "callPremium": 8.4,
+      "putStrike": 740.0,
+      "putDelta": -0.153,
+      "putPremium": 9.525,
+      "credit": 17.93,
+      "currentCost": 17.93,
+      "contracts": 1,
+      "bpRegT": 10201,
+      "stopCost": 35.86,
+      "targetCost": 8.96,
+      "sizeMode": "full",
+      "earningsInCycle": null,
+      "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (auto)",
+      "stressWorstGap": -1793,
+      "notes": "AUTO entry. IVR=55.0 (CBOE-1y). worst 3y 1d gap 11.6%. earnings NEPATVIRTINTA (headless). full size, 1x kontraktai (risk-sizing ~1.5%).",
+      "pnl": 0,
+      "spotNow": 840.81
+    },
+    {
+      "id": 33,
+      "ticker": "AMD",
+      "opened": "2026-08-10",
+      "expiry": "2026-09-18",
+      "dte": 39,
+      "dteLeft": 39,
+      "ivr": 39.1,
+      "spotOpen": 475.62,
+      "callStrike": 600.0,
+      "callDelta": 0.152,
+      "callPremium": 6.7,
+      "putStrike": 400.0,
+      "putDelta": -0.158,
+      "putPremium": 8.325,
+      "credit": 15.02,
+      "currentCost": 15.02,
+      "contracts": 1,
+      "bpRegT": 6259,
+      "stopCost": 30.04,
+      "targetCost": 7.51,
+      "sizeMode": "half",
+      "earningsInCycle": null,
+      "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (auto)",
+      "stressWorstGap": -5269,
+      "notes": "AUTO entry. IVR=39.1 (CBOE-1y). worst 3y 1d gap 23.8%. earnings NEPATVIRTINTA (headless). half size, 1x kontraktai (risk-sizing ~1.5%).",
+      "pnl": 0,
+      "spotNow": 475.62
+    },
+    {
+      "id": 34,
+      "ticker": "NVDA",
+      "opened": "2026-08-10",
+      "expiry": "2026-09-18",
+      "dte": 39,
+      "dteLeft": 39,
+      "ivr": 38.2,
+      "spotOpen": 216.88,
+      "callStrike": 250.0,
+      "callDelta": 0.154,
+      "callPremium": 2.07,
+      "putStrike": 190.0,
+      "putDelta": -0.152,
+      "putPremium": 2.58,
+      "credit": 4.65,
+      "currentCost": 4.65,
+      "contracts": 1,
+      "bpRegT": 2634,
+      "stopCost": 9.3,
+      "targetCost": 2.33,
+      "sizeMode": "half",
+      "earningsInCycle": null,
+      "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (auto)",
+      "stressWorstGap": -1838,
+      "notes": "AUTO entry. IVR=38.2 (CBOE-1y). worst 3y 1d gap 18.7%. earnings NEPATVIRTINTA (headless). half size, 2x kontraktai (risk-sizing ~1.5%). BP headroom sizing down: 2x -> 1x.",
+      "pnl": 0,
+      "spotNow": 216.88
     }
   ],
   "closedTrades": [
@@ -2497,6 +2584,90 @@ const DATA = {
       "date": "2026-08-05",
       "ticker": "TSLA",
       "ivr": 17.0,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-10",
+      "ticker": "GOOGL",
+      "ivr": 20.8,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-10",
+      "ticker": "AMZN",
+      "ivr": 27.8,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-10",
+      "ticker": "PLTR",
+      "ivr": 29.2,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-10",
+      "ticker": "JPM",
+      "ivr": 7.7,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-10",
+      "ticker": "BAC",
+      "ivr": 0.1,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-10",
+      "ticker": "SOFI",
+      "ivr": 0.8,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-10",
+      "ticker": "UNH",
+      "ivr": 9.9,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-10",
+      "ticker": "JNJ",
+      "ivr": 57.9,
+      "reason": "credit/BP 10.3%<12% (neefektyvu)"
+    },
+    {
+      "date": "2026-08-10",
+      "ticker": "PFE",
+      "ivr": 15.3,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-10",
+      "ticker": "KO",
+      "ivr": 49.4,
+      "reason": "credit/BP 8.2%<12% (neefektyvu)"
+    },
+    {
+      "date": "2026-08-10",
+      "ticker": "MCD",
+      "ivr": 49.3,
+      "reason": "credit/BP 8.0%<12% (neefektyvu)"
+    },
+    {
+      "date": "2026-08-10",
+      "ticker": "NKE",
+      "ivr": 29.6,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-10",
+      "ticker": "SBUX",
+      "ivr": 4.3,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-10",
+      "ticker": "TSLA",
+      "ivr": 6.3,
       "reason": "IVR<30 (filtras)"
     }
   ],
