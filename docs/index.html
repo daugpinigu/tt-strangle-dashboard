@@ -149,8 +149,8 @@
 const DATA = {
   "meta": {
     "startDate": "2026-06-12",
-    "lastUpdate": "2026-08-12 20:16 (intraday, po auto #42)",
-    "runCount": 42,
+    "lastUpdate": "2026-08-12 20:28 (auto #43)",
+    "runCount": 43,
     "accountStart": 100000,
     "spyStartPrice": 737.76,
     "qqqStartPrice": 717.12,
@@ -393,9 +393,9 @@ const DATA = {
     },
     {
       "date": "2026-08-12",
-      "strategy": 106735,
-      "spy": 104779,
-      "qqq": 101125
+      "strategy": 106725,
+      "spy": 104767,
+      "qqq": 101100
     }
   ],
   "openPositions": [
@@ -415,7 +415,7 @@ const DATA = {
       "putDelta": -0.158,
       "putPremium": 1.13,
       "credit": 2.13,
-      "currentCost": 1.51,
+      "currentCost": 1.56,
       "contracts": 1,
       "bpRegT": 1326,
       "stopCost": 4.26,
@@ -425,8 +425,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (auto)",
       "stressWorstGap": -213,
       "notes": "AUTO entry. IVR=72.6 (CBOE-1y). worst 3y 1d gap 9.5%. earnings NEPATVIRTINTA (headless). full size.",
-      "pnl": 62,
-      "spotNow": 115.225
+      "pnl": 57,
+      "spotNow": 115.4
     },
     {
       "id": 28,
@@ -473,7 +473,7 @@ const DATA = {
       "putDelta": -0.146,
       "putPremium": 2.93,
       "credit": 5.94,
-      "currentCost": 3.38,
+      "currentCost": 3.35,
       "contracts": 1,
       "bpRegT": 2095,
       "stopCost": 11.88,
@@ -483,8 +483,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (auto)",
       "stressWorstGap": -2251,
       "notes": "AUTO entry. IVR=48.1 (CBOE-1y). worst 3y 1d gap 31.1%. earnings NEPATVIRTINTA (headless). half size, 1x kontraktai (risk-sizing ~1.5%).",
-      "pnl": 256,
-      "spotNow": 148.435
+      "pnl": 259,
+      "spotNow": 148.2
     },
     {
       "id": 32,
@@ -502,7 +502,7 @@ const DATA = {
       "putDelta": -0.153,
       "putPremium": 9.525,
       "credit": 17.93,
-      "currentCost": 14.32,
+      "currentCost": 14.38,
       "contracts": 1,
       "bpRegT": 10201,
       "stopCost": 35.86,
@@ -512,8 +512,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (auto)",
       "stressWorstGap": -1793,
       "notes": "AUTO entry. IVR=55.0 (CBOE-1y). worst 3y 1d gap 11.6%. earnings NEPATVIRTINTA (headless). full size, 1x kontraktai (risk-sizing ~1.5%).",
-      "pnl": 361,
-      "spotNow": 864.88
+      "pnl": 355,
+      "spotNow": 864.93
     },
     {
       "id": 33,
@@ -531,7 +531,7 @@ const DATA = {
       "putDelta": -0.153,
       "putPremium": 2.585,
       "credit": 4.68,
-      "currentCost": 4.4,
+      "currentCost": 4.41,
       "contracts": 2,
       "bpRegT": 5276,
       "stopCost": 9.36,
@@ -541,7 +541,7 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (auto)",
       "stressWorstGap": -3659,
       "notes": "AUTO entry. IVR=39.7 (CBOE-1y). worst 3y 1d gap 18.7%. earnings NEPATVIRTINTA (headless). half size, 2x kontraktai (risk-sizing ~1.5%).",
-      "pnl": 56,
+      "pnl": 54,
       "spotNow": 223.96
     },
     {
@@ -572,6 +572,35 @@ const DATA = {
       "notes": "AUTO entry. IVR=35.3 (CBOE-1y). worst 3y 1d gap 15.4%. earnings NEPATVIRTINTA (headless). half size, 2x kontraktai (risk-sizing ~1.5%).",
       "pnl": 258,
       "spotNow": 230.085
+    },
+    {
+      "id": 35,
+      "ticker": "AMD",
+      "opened": "2026-08-12",
+      "expiry": "2026-09-18",
+      "dte": 37,
+      "dteLeft": 37,
+      "ivr": 33.5,
+      "spotOpen": 487.61,
+      "callStrike": 600.0,
+      "callDelta": 0.161,
+      "callPremium": 6.975,
+      "putStrike": 420.0,
+      "putDelta": -0.175,
+      "putPremium": 8.925,
+      "credit": 15.9,
+      "currentCost": 15.9,
+      "contracts": 1,
+      "bpRegT": 6466,
+      "stopCost": 31.8,
+      "targetCost": 7.95,
+      "sizeMode": "half",
+      "earningsInCycle": null,
+      "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress (auto)",
+      "stressWorstGap": -6444,
+      "notes": "AUTO entry. IVR=33.5 (CBOE-1y). worst 3y 1d gap 23.8%. earnings NEPATVIRTINTA (headless). half size, 1x kontraktai (risk-sizing ~1.5%).",
+      "pnl": 0,
+      "spotNow": 487.61
     }
   ],
   "closedTrades": [
@@ -2792,6 +2821,138 @@ const DATA = {
       "ticker": "TSLA",
       "ivr": 3.4,
       "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-12",
+      "ticker": "AAPL",
+      "ivr": 39.4,
+      "reason": "credit/BP 8.2%<12% (neefektyvu)"
+    },
+    {
+      "date": "2026-08-12",
+      "ticker": "MSFT",
+      "ivr": 27.5,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-12",
+      "ticker": "GOOGL",
+      "ivr": 16.4,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-12",
+      "ticker": "AMZN",
+      "ivr": 20.2,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-12",
+      "ticker": "META",
+      "ivr": 28.7,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-12",
+      "ticker": "PLTR",
+      "ivr": 13.9,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-12",
+      "ticker": "JPM",
+      "ivr": 0.0,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-12",
+      "ticker": "BAC",
+      "ivr": 0.0,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-12",
+      "ticker": "GS",
+      "ivr": 28.5,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-12",
+      "ticker": "HOOD",
+      "ivr": 19.6,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-12",
+      "ticker": "SOFI",
+      "ivr": 0.0,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-12",
+      "ticker": "XOM",
+      "ivr": 52.5,
+      "reason": "credit/BP 10.8%<12% (neefektyvu)"
+    },
+    {
+      "date": "2026-08-12",
+      "ticker": "CVX",
+      "ivr": 46.4,
+      "reason": "credit/BP 10.5%<12% (neefektyvu)"
+    },
+    {
+      "date": "2026-08-12",
+      "ticker": "UNH",
+      "ivr": 4.7,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-12",
+      "ticker": "JNJ",
+      "ivr": 57.7,
+      "reason": "credit/BP 9.2%<12% (neefektyvu)"
+    },
+    {
+      "date": "2026-08-12",
+      "ticker": "PFE",
+      "ivr": 8.0,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-12",
+      "ticker": "LLY",
+      "ivr": 17.2,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-12",
+      "ticker": "KO",
+      "ivr": 38.1,
+      "reason": "credit/BP 6.4%<12% (neefektyvu)"
+    },
+    {
+      "date": "2026-08-12",
+      "ticker": "MCD",
+      "ivr": 43.1,
+      "reason": "credit/BP 7.1%<12% (neefektyvu)"
+    },
+    {
+      "date": "2026-08-12",
+      "ticker": "NKE",
+      "ivr": 23.2,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-12",
+      "ticker": "SBUX",
+      "ivr": 0.0,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-08-12",
+      "ticker": "TSLA",
+      "ivr": 0.0,
+      "reason": "IVR<30 (filtras)"
     }
   ],
   "stressTest": {
@@ -2834,7 +2995,7 @@ const kpis = [
   { label: "Sąskaitos vertė", value: fmt$(last.strategy), delta: fmtPct(stratRet), cls: stratRet >= 0 ? "pos" : "neg" },
   { label: "Bendras P/L", value: fmt$(totalPnl), delta: closed.length + " uždaryta / " + DATA.openPositions.length + " atvira", cls: totalPnl >= 0 ? "pos" : "neg" },
   { label: "Win rate", value: winRate === null ? "—" : winRate.toFixed(0) + "%", delta: winRate === null ? "dar nėra uždarytų" : wins + "/" + closed.length, cls: "neutral" },
-  { label: "Naudojamas BP", value: fmt$(usedBP), delta: "Reg-T · " + (usedBP / start * 100).toFixed(0) + "% sąsk.", cls: "neutral" },
+  { label: "Naudojamas BP", value: fmt$(usedBP), delta: "Reg-T · " + (usedBP / last.strategy * 100).toFixed(0) + "% net liq (cap 50%)", cls: "neutral" },
   { label: "Max drawdown", value: maxDD.toFixed(1) + "%", delta: "riba: -15%", cls: maxDD < -15 ? "neg" : "neutral" },
   { label: "vs SPY", value: fmtPct(stratRet - spyRet), delta: "SPY: " + fmtPct(spyRet), cls: stratRet >= spyRet ? "pos" : "neg" },
   { label: "vs QQQ", value: fmtPct(stratRet - qqqRet), delta: "QQQ: " + fmtPct(qqqRet), cls: stratRet >= qqqRet ? "pos" : "neg" }
