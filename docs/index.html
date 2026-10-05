@@ -149,8 +149,8 @@
 const DATA = {
   "meta": {
     "startDate": "2026-06-12",
-    "lastUpdate": "2026-10-05 17:16 (intraday, po auto #104)",
-    "runCount": 104,
+    "lastUpdate": "2026-10-05 17:20 (auto #105, rytinis)",
+    "runCount": 105,
     "accountStart": 100000,
     "spyStartPrice": 737.76,
     "qqqStartPrice": 717.12,
@@ -615,9 +615,9 @@ const DATA = {
     },
     {
       "date": "2026-10-05",
-      "strategy": 111453,
-      "spy": 104428,
-      "qqq": 104734
+      "strategy": 111521,
+      "spy": 104551,
+      "qqq": 104823
     }
   ],
   "openPositions": [
@@ -697,7 +697,7 @@ const DATA = {
       "putDelta": -0.11,
       "putPremium": 0.655,
       "credit": 1.7,
-      "currentCost": 1.62,
+      "currentCost": 1.61,
       "contracts": 3,
       "bpRegT": 2658,
       "stopCost": 3.4,
@@ -708,8 +708,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress + NASDAQ earnings (auto)",
       "stressWorstGap": -510,
       "notes": "AUTO entry. IVR=63.3 (CBOE-1y). worst 3y 1d gap 16.1%. earnings 2026-10-20 (cikle). full size, 9x kontraktai (risk-sizing ~1.5%). BP headroom sizing down: 9x -> 3x.",
-      "pnl": 24,
-      "spotNow": 66.727
+      "pnl": 27,
+      "spotNow": 66.795
     },
     {
       "id": 70,
@@ -757,7 +757,7 @@ const DATA = {
       "putDelta": -0.163,
       "putPremium": 12.675,
       "credit": 23.77,
-      "currentCost": 14.43,
+      "currentCost": 14.32,
       "contracts": 1,
       "bpRegT": 9967,
       "stopCost": 47.54,
@@ -768,8 +768,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress + NASDAQ earnings (auto)",
       "stressWorstGap": -6903,
       "notes": "AUTO entry. IVR=56.6 (CBOE-1y). worst 3y 1d gap 20.3%. earnings 2026-11-04 (cikle). full size, 1x kontraktai (risk-sizing ~1.5%).",
-      "pnl": 934,
-      "spotNow": 738.38
+      "pnl": 945,
+      "spotNow": 738.94
     },
     {
       "id": 72,
@@ -817,7 +817,7 @@ const DATA = {
       "putDelta": -0.163,
       "putPremium": 5.4,
       "credit": 9.57,
-      "currentCost": 7.32,
+      "currentCost": 7.05,
       "contracts": 2,
       "bpRegT": 6980,
       "stopCost": 19.14,
@@ -828,8 +828,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress + NASDAQ earnings (auto)",
       "stressWorstGap": -3645,
       "notes": "AUTO entry. IVR=53.7 (CBOE-1y). worst 3y 1d gap 20.5%. earnings data n/a (Zacks; NASDAQ kalendorius <=7d svarus). full size, 2x kontraktai (risk-sizing ~1.5%).",
-      "pnl": 450,
-      "spotNow": 271.7636
+      "pnl": 504,
+      "spotNow": 271.225
     },
     {
       "id": 74,
@@ -877,7 +877,7 @@ const DATA = {
       "putDelta": -0.193,
       "putPremium": 0.295,
       "credit": 0.56,
-      "currentCost": 0.61,
+      "currentCost": 0.62,
       "contracts": 1,
       "bpRegT": 382,
       "stopCost": 1.12,
@@ -888,8 +888,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress + NASDAQ earnings (auto)",
       "stressWorstGap": -56,
       "notes": "AUTO entry. IVR=34.2 (CBOE-1y). worst 3y 1d gap 6.8%. earnings 2026-11-03 (cikle). half size, 10x kontraktai (risk-sizing ~1.5%). BP headroom sizing down: 10x -> 1x.",
-      "pnl": -5,
-      "spotNow": 27.475
+      "pnl": -6,
+      "spotNow": 27.435
     },
     {
       "id": 76,
@@ -907,7 +907,7 @@ const DATA = {
       "putDelta": -0.143,
       "putPremium": 0.475,
       "credit": 0.78,
-      "currentCost": 0.74,
+      "currentCost": 0.73,
       "contracts": 1,
       "bpRegT": 614,
       "stopCost": 1.56,
@@ -918,8 +918,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress + NASDAQ earnings (auto)",
       "stressWorstGap": -118,
       "notes": "AUTO entry. IVR=49.6 (CBOE-1y). worst 3y 1d gap 11.1%. earnings 2026-10-14 (cikle). half size, 10x kontraktai (risk-sizing ~1.5%). BP headroom sizing down: 10x -> 1x.",
-      "pnl": 4,
-      "spotNow": 53.82
+      "pnl": 5,
+      "spotNow": 53.91
     }
   ],
   "closedTrades": [
@@ -10752,6 +10752,108 @@ const DATA = {
       "date": "2026-10-02",
       "ticker": "SNOW",
       "ivr": 27.1,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-10-05",
+      "ticker": "NVDA",
+      "ivr": 3.1,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-10-05",
+      "ticker": "AMD",
+      "ivr": 23.7,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-10-05",
+      "ticker": "GS",
+      "ivr": 50.0,
+      "reason": "likvidumas: spread 51%>40% / P ok"
+    },
+    {
+      "date": "2026-10-05",
+      "ticker": "SOFI",
+      "ivr": 23.4,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-10-05",
+      "ticker": "OXY",
+      "ivr": 44.0,
+      "reason": "likvidumas: spread 47%>40% / P ok"
+    },
+    {
+      "date": "2026-10-05",
+      "ticker": "WMT",
+      "ivr": 25.8,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-10-05",
+      "ticker": "KO",
+      "ivr": 72.7,
+      "reason": "credit/BP 9.1%<12% (neefektyvu)"
+    },
+    {
+      "date": "2026-10-05",
+      "ticker": "MCD",
+      "ivr": 66.0,
+      "reason": "credit/BP 10.3%<12% (neefektyvu)"
+    },
+    {
+      "date": "2026-10-05",
+      "ticker": "NKE",
+      "ivr": 28.2,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-10-05",
+      "ticker": "CAT",
+      "ivr": 59.6,
+      "reason": "likvidumas: spread 50%>40% / spread 44%>40%"
+    },
+    {
+      "date": "2026-10-05",
+      "ticker": "TSLA",
+      "ivr": 27.7,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-10-05",
+      "ticker": "MU",
+      "ivr": 0.0,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-10-05",
+      "ticker": "AVGO",
+      "ivr": 7.0,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-10-05",
+      "ticker": "MRVL",
+      "ivr": 27.4,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-10-05",
+      "ticker": "ORCL",
+      "ivr": 29.4,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-10-05",
+      "ticker": "MSTR",
+      "ivr": 11.7,
+      "reason": "IVR<30 (filtras)"
+    },
+    {
+      "date": "2026-10-05",
+      "ticker": "DIS",
+      "ivr": 24.3,
       "reason": "IVR<30 (filtras)"
     }
   ],
