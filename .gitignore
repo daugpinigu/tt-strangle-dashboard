@@ -1,0 +1,10 @@
+# Projekto vidiniai dokumentai lieka tik lokaliai (metodikos README su asmeniniais
+# komentarais, savaitinis logas, pasenes data.js) - repo viesas.
+README.md
+weekly-log.md
+run-log.md
+data.js
+__pycache__/
+*.pyc
+.DS_Store
+mode.txt

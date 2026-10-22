@@ -1,0 +1,97 @@
+name: TT Strangle update
+# Paper strangle pipeline'as debesyje (nuo 2026-10-22). Iki tol bego Mac'o launchd -
+# Mac'as clamshell miege visa JAV sesija, runai startuodavo 45 s DarkWake languose be
+# tinklo -> "CBOE fetch fail (URLError)" stale'ai, dienos taskas nerasomas, dashboard'as
+# uzsaldavo ties vakar uzdarymu. Cron'ai UTC; kodas pats guard'ina ET rinkos valandas
+# (intraday 10:05-16:10 ET, rytinis laukia 10:05) ir naudoja ET sesijos data.
+on:
+  schedule:
+    - cron: '5,20,35,50 14-21 * * 1-5'   # intraday kas 15 min (uz 10:05-16:10 ET kodas tyliai iseina)
+    - cron: '20 14,15 * * 1-5'           # rytinis ~10:20 ET: 14:20Z vasara / 15:20Z ziema (guard'as - karta per sesija)
+    - cron: '30 20,21 * * 1-5'           # naktinis ~16:30 ET: 20:30Z vasara / 21:30Z ziema (guard'as - karta per sesija, po 16:15 ET)
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'intraday (markai+management) | morning / nightly (pilnas runas su entry)'
+        type: choice
+        options: [intraday, morning, nightly]
+        default: intraday
+
+permissions:
+  contents: write
+
+# Vienas runas vienu metu - data.json read-modify-write negali lenktyniauti (#41 pamoka).
+# cancel-in-progress=false: laukiantis runas eina po dabartinio, ne nutraukia jo.
+concurrency:
+  group: tt-strangle-run
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      TZ: America/New_York          # saugiklis bet kokiam naive date() kvietimui; update.py pats naudoja ET/Vilnius
+      TT_PUBLISH: inrepo            # publish.py tik kopijuoja dashboard.html -> docs/index.html, commit zemiau
+      TT_STAMP_DIR: .stamps         # alertu cooldown stamp'ai commit'inami (runneris kaskart naujas)
+      TT_RUNLOG: run-log-actions.md # istorinis run-log.md (iki 2026-10-22) liko lokaliai, ne viesame repo
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pick mode
+        id: mode
+        shell: bash
+        run: |
+          python3 - "${{ github.event_name }}" "${{ github.event.schedule }}" "${{ github.event.inputs.mode }}" > mode.txt <<'PY'
+          import json, sys, datetime
+          from zoneinfo import ZoneInfo
+          event, cron, inp = sys.argv[1:4]
+          et = datetime.datetime.now(ZoneInfo("America/New_York"))
+          d, hm = et.date().isoformat(), (et.hour, et.minute)
+          done = json.load(open("data.json"))["meta"].get("lastFull", {})
+          if event == "workflow_dispatch":
+              mode = inp or "intraday"
+          elif cron.startswith("5,20,35,50"):
+              mode = "intraday"
+          elif cron.startswith("20 14,15"):
+              # rytinis: karta per sesija, iki 12:00 ET (jei 9:20 ET ziema - kodas palaukia 10:05)
+              mode = "skip" if (done.get("morning") == d or hm >= (12, 0)) else "morning"
+          elif cron.startswith("30 20,21"):
+              # naktinis: karta per sesija, tik po uzdarymo (>=16:15 ET, delayed feed'as jau rodo close)
+              mode = "skip" if (done.get("nightly") == d or hm < (16, 15)) else "nightly"
+          else:
+              mode = "intraday"
+          print(mode)
+          print(f"event={event} cron='{cron}' ET={d} {et:%H:%M} lastFull={done} -> {mode}", file=sys.stderr)
+          PY
+          echo "mode=$(cat mode.txt)" >> "$GITHUB_OUTPUT"
+
+      - name: Run update.py
+        if: steps.mode.outputs.mode != 'skip'
+        shell: bash
+        run: |
+          case "${{ steps.mode.outputs.mode }}" in
+            intraday) python3 update.py --intraday ;;
+            morning)  python3 update.py --morning ;;
+            nightly)  python3 update.py ;;
+          esac
+
+      - name: Commit state + dashboard
+        if: always() && steps.mode.outputs.mode != 'skip'
+        shell: bash
+        run: |
+          git config user.name "tt-strangle-bot"
+          git config user.email "tt-strangle-bot@users.noreply.github.com"
+          git add -A -- data.json iv_history.json ledger.csv run-log-actions.md dashboard.html docs .stamps
+          if git diff --cached --quiet; then echo "nera pakeitimu - commit praleistas"; exit 0; fi
+          git commit -q -m "auto: ${{ steps.mode.outputs.mode }} $(TZ=Europe/Vilnius date '+%Y-%m-%d %H:%M') Vilnius"
+          for i in 1 2 3; do
+            git push origin HEAD:main && exit 0
+            echo "push nepavyko ($i) - rebase ant naujo main ir kartojam"
+            git pull --rebase origin main || exit 1
+          done
+          exit 1
