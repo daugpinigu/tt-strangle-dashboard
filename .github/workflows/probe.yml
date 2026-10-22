@@ -1,0 +1,33 @@
+name: Probe data sources
+on:
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Probe endpoints
+        shell: bash
+        run: |
+          UA='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36'
+          probe () {
+            local name="$1" url="$2"; shift 2
+            local code
+            code=$(curl -sS -L -m 25 -o /tmp/body -w '%{http_code} %{size_download}B %{time_total}s' "$@" "$url" 2>/tmp/err || true)
+            echo "=== $name -> $code"
+            head -c 220 /tmp/body | tr '\n' ' '; echo
+            [ -s /tmp/err ] && { echo "  err: $(head -c 200 /tmp/err)"; } || true
+          }
+          probe "CBOE options AAPL"      "https://cdn.cboe.com/api/global/delayed_quotes/options/AAPL.json" -H "User-Agent: Mozilla/5.0"
+          probe "CBOE options SPY"       "https://cdn.cboe.com/api/global/delayed_quotes/options/SPY.json" -H "User-Agent: Mozilla/5.0"
+          probe "CBOE historical AAPL"   "https://cdn.cboe.com/api/global/delayed_quotes/historical_data/AAPL.json" -H "User-Agent: Mozilla/5.0"
+          probe "NASDAQ option-chain"    "https://api.nasdaq.com/api/quote/AAPL/option-chain?assetclass=stocks&limit=1000&fromdate=2026-11-20&todate=2026-11-20&money=all" -H "User-Agent: $UA" -H "Accept: application/json, text/plain, */*"
+          probe "NASDAQ etf info SPY"    "https://api.nasdaq.com/api/quote/SPY/info?assetclass=etf" -H "User-Agent: $UA" -H "Accept: application/json, text/plain, */*"
+          probe "NASDAQ earnings cal"    "https://api.nasdaq.com/api/calendar/earnings?date=2026-10-27" -H "User-Agent: Mozilla/5.0" -H "Accept: application/json"
+          probe "NASDAQ analyst AAPL"    "https://api.nasdaq.com/api/analyst/AAPL/earnings-date" -H "User-Agent: Mozilla/5.0" -H "Accept: application/json"
+          probe "Yahoo chart AAPL 3y"    "https://query1.finance.yahoo.com/v8/finance/chart/AAPL?range=3y&interval=1d" -H "User-Agent: Mozilla/5.0"
+          probe "optioncharts AAPL"      "https://optioncharts.io/async/options_ticker_info?ticker=AAPL" -H "User-Agent: Mozilla/5.0"
+          probe "dolthub earnings"       "https://www.dolthub.com/api/v1alpha1/post-no-preference/earnings/master?q=SELECT+act_symbol%2Cdate%2C%60when%60+FROM+earnings_calendar+WHERE+date+BETWEEN+%272026-10-22%27+AND+%272026-10-29%27+ORDER+BY+date+LIMIT+5" -H "User-Agent: Mozilla/5.0"
+          probe "Telegram API reach"     "https://api.telegram.org/" 
+          echo "=== runner time: $(date -u) / ET: $(TZ=America/New_York date) / python: $(python3 --version) / gh: $(gh --version | head -1)"
+          python3 -c "from zoneinfo import ZoneInfo; import datetime; print('zoneinfo ok', datetime.datetime.now(ZoneInfo('Europe/Vilnius')))"
