@@ -12,10 +12,10 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'intraday (markai+management) | morning / nightly (pilnas runas su entry)'
+        description: 'auto (pagal ET laika + guard''ai - isoriniam dispatcher''iui) | intraday (markai+management) | morning / nightly (pilnas runas su entry)'
         type: choice
-        options: [intraday, morning, nightly]
-        default: intraday
+        options: [auto, intraday, morning, nightly]
+        default: auto
 
 permissions:
   contents: write
@@ -53,16 +53,28 @@ jobs:
           et = datetime.datetime.now(ZoneInfo("America/New_York"))
           d, hm = et.date().isoformat(), (et.hour, et.minute)
           done = json.load(open("data.json"))["meta"].get("lastFull", {})
-          if event == "workflow_dispatch":
-              mode = inp or "intraday"
+          # rytinis: karta per sesija, iki 12:00 ET (jei 9:20 ET ziema - kodas palaukia 10:05)
+          morning = "skip" if (done.get("morning") == d or hm >= (12, 0)) else "morning"
+          # naktinis: karta per sesija, tik po uzdarymo (>=16:15 ET, delayed feed'as jau rodo close)
+          nightly = "skip" if (done.get("nightly") == d or hm < (16, 15)) else "nightly"
+          if event == "workflow_dispatch" and (inp or "auto") == "auto":
+              # Isorinis dispatcher'is (Mac launchd / cron-job.org) kas 15 min: GitHub cron'as
+              # siam repo nepatikimas (2026-10-28..30: ~1 fire/para/cron'a, 2-5 h velavimas,
+              # rytinis visada po 12:00 -> skip). Mode pagal ET laika su tais paciais guard'ais.
+              if hm >= (16, 15):
+                  mode = nightly
+              elif morning == "morning" and hm >= (10, 5):
+                  mode = "morning"
+              else:
+                  mode = "intraday"   # kodo gate 10:05-16:10 ET, kitaip tyliai iseina
+          elif event == "workflow_dispatch":
+              mode = inp
           elif cron.startswith("5,20,35,50"):
               mode = "intraday"
           elif cron.startswith("20 14,15"):
-              # rytinis: karta per sesija, iki 12:00 ET (jei 9:20 ET ziema - kodas palaukia 10:05)
-              mode = "skip" if (done.get("morning") == d or hm >= (12, 0)) else "morning"
+              mode = morning
           elif cron.startswith("30 20,21"):
-              # naktinis: karta per sesija, tik po uzdarymo (>=16:15 ET, delayed feed'as jau rodo close)
-              mode = "skip" if (done.get("nightly") == d or hm < (16, 15)) else "nightly"
+              mode = nightly
           else:
               mode = "intraday"
           print(mode)

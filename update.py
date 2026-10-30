@@ -306,7 +306,9 @@ def main():
 
     # Laikas nepriklausomas nuo hosto TZ (Actions runneriai UTC): `today` = JAV
     # sesijos data (ET) - DTE, equity taskas, open/close datos; `now` = Vilniaus
-    # laikas tik rodymui (lastUpdate, run-log), kaip iki siol Mac'e.
+    # laikas tik rodymui (lastUpdate, run-log), kaip iki siol Mac'e. lastUpdate -
+    # PILNA Vilniaus data+laikas (iki 2026-10-30 buvo ET data + Vilniaus laikas:
+    # naktinis 02:01 Vilnius rode 'vakar 02:01' ir atrode para pasenes).
     today = datetime.datetime.now(ZoneInfo("America/New_York")).date()
     now = datetime.datetime.now(ZoneInfo("Europe/Vilnius"))
 
@@ -532,10 +534,10 @@ def main():
     # --- meta ---
     if intraday:
         # runCount nedidiname - jis skaiciuoja pilnus (naktinius) runus
-        data["meta"]["lastUpdate"] = f"{today.isoformat()} {now.strftime('%H:%M')} (intraday, po auto #{data['meta'].get('runCount', 1)})"
+        data["meta"]["lastUpdate"] = f"{now.strftime('%Y-%m-%d %H:%M')} (intraday, po auto #{data['meta'].get('runCount', 1)})"
     else:
         data["meta"]["runCount"] = data["meta"].get("runCount", 1) + 1
-        data["meta"]["lastUpdate"] = (f"{today.isoformat()} {now.strftime('%H:%M')} "
+        data["meta"]["lastUpdate"] = (f"{now.strftime('%Y-%m-%d %H:%M')} "
                                       f"(auto #{data['meta']['runCount']}{', rytinis' if morning else ''})")
     # sessionDate - dashboard'as pagal ji zino, ar paskutinis equity taskas yra
     # siandienos (jei ne - prie SPY/QQQ KPI rodo tasko data); lastFull - workflow
