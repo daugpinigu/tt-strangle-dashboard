@@ -105,13 +105,7 @@ def feed_stale_reason(d):
     is_open, et = market_open_now()
     if is_open and (et - ts).total_seconds() > 3600:
         return f"duomenys is {ts:%m-%d %H:%M} ET (>60 min rinkos valandomis)"
-    # paskutine sesija: siandien jei jau po 10:05 ET prekybos dienoje, kitaip ankstesne
-    day = et.date()
-    if not (day.weekday() < 5 and day.isoformat() not in MARKET_HOLIDAYS
-            and et.hour * 60 + et.minute >= 10 * 60 + 5):
-        day -= datetime.timedelta(days=1)
-        while day.weekday() >= 5 or day.isoformat() in MARKET_HOLIDAYS:
-            day -= datetime.timedelta(days=1)
+    day = last_session_date(et)
     session_open = datetime.datetime.combine(day, datetime.time(9, 30), tzinfo=et_tz)
     if ts < session_open:
         return f"duomenys is {ts:%m-%d %H:%M} ET (senesni nei {day:%m-%d} sesija)"
@@ -184,14 +178,25 @@ def nasdaq_chain(t, expiries):
 
 OPT = re.compile(r'^[A-Z]+(\d{6})([CP])(\d{8})$')
 def parse_sym(sym):
-    m = OPT.match(sym)
+    """OCC simbolis -> (exp, 'C'/'P', strike); None jei root'as nestandartinis.
+    2026-11-05 incidentas: CBOE chain'uose atsirado kontraktu su skaitmeniu
+    root'e (CVX1/BA1 Jan-27 adjusted po korporacinio ivykio, B1VDA/B1SLA =
+    NVDA/TSLA weekly) -> m=None -> AttributeError nuzude VISUS 11-05/11-06 runus,
+    dashboard'as uzsalo ties 11-04 (TG secret'u nera - tyliai). Tokie kontraktai
+    turi KITA deliverable - markinimui ir entry netinka, tiesiog praleidziam."""
+    m = OPT.match(sym or "")
+    if not m:
+        return None
     ymd, cp, strike = m.groups()
     exp = datetime.date(2000 + int(ymd[:2]), int(ymd[2:4]), int(ymd[4:6]))
     return exp, cp, int(strike) / 1000
 
 def leg_mid(opts, exp, cp, strike):
     for o in opts:
-        e, c, s = parse_sym(o["option"])
+        r = parse_sym(o.get("option"))
+        if r is None:
+            continue   # adjusted/nestandartinis root'as (CVX1, B1VDA) - ne musu koja
+        e, c, s = r
         if e == exp and c == cp and abs(s - strike) < 1e-6:
             bid, ask = o["bid"] or 0, o["ask"] or 0
             # bid=0 IR ask=0 = quote dar nedisseminated (pvz. opening rotation),
@@ -260,6 +265,20 @@ def market_open_now():
     # MCD/KO phantom TP incidentas). 10:05 run mato >=9:50 duomenis.
     return (10 * 60 + 5) <= minutes <= (16 * 60 + 10), et
 
+def last_session_date(et):
+    """Paskutine JAV prekybos sesija pagal ET laika: siandien, jei prekybos diena
+    ir jau >=10:05 ET (delayed feed'as rodo siandienos duomenis); kitaip - ankstesne
+    prekybos diena (savaitgalis, svente, ankstyvas rytas). Vienas saltinis ir stale
+    guard'ui, ir `today` (DTE, equity taskas, open/close datos): catch-up runas
+    sestadieni (2026-11-07 po 11-05/11-06 crash'u) datuoja penktadieni, ne sestadieni."""
+    day = et.date()
+    if not (day.weekday() < 5 and day.isoformat() not in MARKET_HOLIDAYS
+            and et.hour * 60 + et.minute >= 10 * 60 + 5):
+        day -= datetime.timedelta(days=1)
+        while day.weekday() >= 5 or day.isoformat() in MARKET_HOLIDAYS:
+            day -= datetime.timedelta(days=1)
+    return day
+
 def main():
     intraday = "--intraday" in sys.argv
     morning = "--morning" in sys.argv
@@ -309,7 +328,9 @@ def main():
     # laikas tik rodymui (lastUpdate, run-log), kaip iki siol Mac'e. lastUpdate -
     # PILNA Vilniaus data+laikas (iki 2026-10-30 buvo ET data + Vilniaus laikas:
     # naktinis 02:01 Vilnius rode 'vakar 02:01' ir atrode para pasenes).
-    today = datetime.datetime.now(ZoneInfo("America/New_York")).date()
+    # `today` = PASKUTINE sesija, ne kalendorine ET data: savaitgali/svente/pries
+    # 10:05 ET runas (catch-up po crash'o) datuoja praejusia prekybos diena.
+    today = last_session_date(datetime.datetime.now(ZoneInfo("America/New_York")))
     now = datetime.datetime.now(ZoneInfo("Europe/Vilnius"))
 
     # LOCK - VISIEMS runams (2026-08-10 fix, #41 race incidentas). 2026-08-31
@@ -404,8 +425,15 @@ def main():
             continue
         opts = d["options"]
         exp = datetime.date.fromisoformat(p["expiry"])
-        cm = leg_mid(opts, exp, "C", p["callStrike"])
-        pm = leg_mid(opts, exp, "P", p["putStrike"])
+        try:
+            cm = leg_mid(opts, exp, "C", p["callStrike"])
+            pm = leg_mid(opts, exp, "P", p["putStrike"])
+        except Exception as e:
+            # chain'o formato staigmena (2026-11-05 klase) negali nuzudyti viso
+            # runo: senas markas + WARN, kitos pozicijos markinamos toliau
+            actions.append(f"{p['ticker']}: WARN chain parse fail ({type(e).__name__}: {e}), marka nepakeista")
+            still_open.append(p)
+            continue
         if cm is None or pm is None:
             # nepavyko rasti kojos - paliekam sena marka, pazymim
             actions.append(f"{p['ticker']}: WARN nerasta koja chain'e, marka nepakeista")

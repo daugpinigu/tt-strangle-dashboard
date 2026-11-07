@@ -287,9 +287,12 @@ def _by_expiry(options, parse_sym, today):
     exps = {}
     for o in options:
         try:
-            exp, cp, strike = parse_sym(o["option"])
+            r = parse_sym(o.get("option"))
         except Exception:
-            continue
+            r = None
+        if r is None:
+            continue   # adjusted/nestandartinis root'as (CVX1, B1VDA) - praleidziam
+        exp, cp, strike = r
         exps.setdefault(exp, []).append((cp, strike, o))
     return exps
 
