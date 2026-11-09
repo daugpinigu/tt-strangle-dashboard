@@ -29,7 +29,9 @@ Režimai:
 Grandinės valdymas:
 ```
 gh run list -R daugpinigu/tt-strangle-dashboard --workflow=relay.yml --limit 5      # turi būti 1 runas "waiting"
-gh workflow run relay.yml -R daugpinigu/tt-strangle-dashboard -f wait=relay-1       # (re)startas po 1 min
+python3 relay.py restart                                                           # (re)startas: atšaukia laukiantį relay + relay-1
+# (tiesiog `gh workflow run relay.yml -f wait=relay-1` kabo "pending" - waiting runas laiko concurrency grupę,
+#  o atėjus jo laikui dublikatas atšaukiamas; grandinė lieka viena, bet restartas nepagreitina)
 gh api -X PUT repos/daugpinigu/tt-strangle-dashboard/environments/relay-15 -F wait_timer=15   # jei env dingo
 ```
 Senieji `schedule` cron'ai update.yml liko tik kaip papildomas atgaivinimo taškas.
@@ -62,7 +64,7 @@ TT_ALLOW_LOCAL=1 TT_PUBLISH=inrepo TT_STAMP_DIR=.stamps SKIP_NOTIFY=1 python3 up
 
 ## Diagnostika
 - dashboard'as "užstrigo" (lastUpdate sena): PIRMIAUSIA `gh run list -R daugpinigu/tt-strangle-dashboard --limit 15` -
-  (a) nėra `TT Strangle relay` runo su status `waiting`/`queued` = grandinė mirusi → `gh workflow run relay.yml -f wait=relay-1`
+  (a) nėra `TT Strangle relay` runo su status `waiting`/`queued`/`pending` = grandinė mirusi → `python3 relay.py restart`
   (per 90 min watchdog'as to nepadarė tik jei nebuvo nė vieno update runo); (b) `failure` runai = kodo crash
   (2026-11-05/06: CBOE chain'e atsirado `CVX1`/`BA1`/`B1VDA` root'ai → `parse_sym` AttributeError, visi runai lūžo
   tyliai, nes TG secret'ų nėra); `success` be commit'o = tik cron'as po uždarymo (intraday skip). Pages kaltas tik jei

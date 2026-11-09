@@ -26,6 +26,11 @@ CLI (GitHub Actions, GH_TOKEN aplinkoje):
   python3 relay.py tick       # relay.yml job'as: cancel kitus -> ipedinis -> update
   python3 relay.py watchdog   # update.yml pabaiga: atgaivina grandine, jei mirusi
   python3 relay.py plan       # tik parodo sprendima (be API kvietimu)
+  python3 relay.py restart    # lokaliai (gh auth): atsaukia visus gyvus relay runus ir
+                              # paleidzia nauja grandine su relay-1. Reikalingas, nes
+                              # "waiting" runas laiko concurrency grupe - tiesiog
+                              # dispatch'intas relay-1 kabotu "pending", kol pasibaigs
+                              # laukimas, o tada butu atsauktas kaip dublikatas.
 """
 import datetime, json, os, subprocess, sys, time
 from zoneinfo import ZoneInfo
@@ -182,11 +187,25 @@ def watchdog():
         raise SystemExit("watchdog: relay dispatch nepavyko")
 
 
+def restart():
+    runs = relay_runs()
+    alive = alive_runs(runs)
+    for r in alive:
+        cancel(r)
+    if alive:
+        time.sleep(5)   # cancel'as asinchroninis - grupe atsilaisvina per kelias sekundes
+    if not dispatch(RELAY_WF, wait="relay-1"):
+        raise SystemExit("restart: relay dispatch nepavyko")
+    print("restart: nauja grandine paleista (relay-1 -> pirmas tiksis po ~1 min)")
+
+
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "plan"
     if cmd == "tick":
         tick()
     elif cmd == "watchdog":
         watchdog()
+    elif cmd == "restart":
+        restart()
     else:
         print(json.dumps(plan(), ensure_ascii=False, indent=2))
