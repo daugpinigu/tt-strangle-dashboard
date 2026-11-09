@@ -5,6 +5,10 @@ name: TT Strangle update
 # uzsaldavo ties vakar uzdarymu. Cron'ai UTC; kodas pats guard'ina ET rinkos valandas
 # (intraday 10:05-16:10 ET, rytinis laukia 10:05) ir naudoja ET sesijos data.
 on:
+  # NUO 2026-11-09 pagrindinis tikseklis = relay.yml estafete (kas 15 min rinkos lange, kas 60 min
+  # uz jo), zr. relay.py. GitHub `schedule` siam repo suveikia ~1x/para su 2-10 h velavimu (11-07 ir
+  # 11-09 - 0 runu per sesija), tad cron'ai cia lieka TIK kaip atsarginis grandines atgaivinimo
+  # taskas (watchdog zingsnis apacioje) - ne kaip pagrindinis grafikas.
   schedule:
     - cron: '5,20,35,50 14-21 * * 1-5'   # intraday kas 15 min (uz 10:05-16:10 ET kodas tyliai iseina)
     - cron: '20 14,15 * * 1-5'           # rytinis ~10:20 ET: 14:20Z vasara / 15:20Z ziema (guard'as - karta per sesija)
@@ -19,6 +23,7 @@ on:
 
 permissions:
   contents: write
+  actions: write   # relay watchdog: gh workflow run relay.yml per GITHUB_TOKEN
 
 # Vienas runas vienu metu - data.json read-modify-write negali lenktyniauti (#41 pamoka).
 # cancel-in-progress=false: laukiantis runas eina po dabartinio, ne nutraukia jo.
@@ -49,21 +54,29 @@ jobs:
           python3 - "${{ github.event_name }}" "${{ github.event.schedule }}" "${{ github.event.inputs.mode }}" > mode.txt <<'PY'
           import json, sys, datetime
           from zoneinfo import ZoneInfo
+          from update import last_session_date, MARKET_HOLIDAYS
           event, cron, inp = sys.argv[1:4]
           et = datetime.datetime.now(ZoneInfo("America/New_York"))
           d, hm = et.date().isoformat(), (et.hour, et.minute)
+          sess = last_session_date(et).isoformat()   # paskutine prekybos sesija (= update.py `today`)
+          trading_day = et.weekday() < 5 and d not in MARKET_HOLIDAYS
           done = json.load(open("data.json"))["meta"].get("lastFull", {})
           # rytinis: karta per sesija, iki 12:00 ET (jei 9:20 ET ziema - kodas palaukia 10:05)
           morning = "skip" if (done.get("morning") == d or hm >= (12, 0)) else "morning"
           # naktinis: karta per sesija, tik po uzdarymo (>=16:15 ET, delayed feed'as jau rodo close)
           nightly = "skip" if (done.get("nightly") == d or hm < (16, 15)) else "nightly"
+          # catch-up: paskutines sesijos naktinis nepadarytas, o dabar uz rinkos valandu (savaitgalis,
+          # svente, naktis iki 09:30 ET - delayed feed'as dar rodo tos sesijos close; update.py `today`
+          # = ta sesija). Iki 2026-11-09 praleistas naktinis laukdavo kito trigerio >=16:15 ET - para.
+          catchup = (done.get("nightly") != sess) and (not trading_day or hm < (9, 30))
           if event == "workflow_dispatch" and (inp or "auto") == "auto":
-              # Isorinis dispatcher'is (Mac launchd / cron-job.org) kas 15 min: GitHub cron'as
-              # siam repo nepatikimas (2026-10-28..30: ~1 fire/para/cron'a, 2-5 h velavimas,
-              # rytinis visada po 12:00 -> skip). Mode pagal ET laika su tais paciais guard'ais.
-              if hm >= (16, 15):
+              # relay.yml estafete kas 15 min (nuo 2026-11-09; iki tol - isorinis dispatcher'is):
+              # mode pagal ET laika su tais paciais guard'ais, kad bet kuris tiksis darytu tai, kas pribrendo.
+              if trading_day and hm >= (16, 15):
                   mode = nightly
-              elif morning == "morning" and hm >= (10, 5):
+              elif catchup:
+                  mode = "nightly"
+              elif trading_day and morning == "morning" and hm >= (10, 5):
                   mode = "morning"
               else:
                   mode = "intraday"   # kodo gate 10:05-16:10 ET, kitaip tyliai iseina
@@ -74,11 +87,11 @@ jobs:
           elif cron.startswith("20 14,15"):
               mode = morning
           elif cron.startswith("30 20,21"):
-              mode = nightly
+              mode = "nightly" if catchup else nightly
           else:
               mode = "intraday"
           print(mode)
-          print(f"event={event} cron='{cron}' ET={d} {et:%H:%M} lastFull={done} -> {mode}", file=sys.stderr)
+          print(f"event={event} cron='{cron}' ET={d} {et:%H:%M} sesija={sess} lastFull={done} catchup={catchup} -> {mode}", file=sys.stderr)
           PY
           echo "mode=$(cat mode.txt)" >> "$GITHUB_OUTPUT"
 
@@ -107,3 +120,11 @@ jobs:
             git pull --rebase origin main || exit 1
           done
           exit 1
+
+      - name: Relay watchdog
+        # Grandine mirusi (nera queued/waiting relay runo per 90 min) -> nauja. Taip cron'ai,
+        # kai suveikia, ir rankiniai runai automatiskai atgaivina estafete (zr. relay.py).
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 relay.py watchdog

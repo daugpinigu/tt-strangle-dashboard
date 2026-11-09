@@ -1,0 +1,38 @@
+name: TT Strangle relay
+# Estafete vietoj `schedule` cron'o (zr. relay.py doc): environment'o wait timer'is
+# (relay-15 = 15 min, relay-60 = 60 min, relay-1 = testams/greitam restartui) sulaiko
+# job'a PRIES runnerio skyrima (nemokamai), tada job'as atsaukia kitus relay runus,
+# dispatch'ina savo ipedini ir (rinkos lange arba kai veluoja naktinis) update.yml.
+# Grandine startuoja/atgaivinama: `gh workflow run relay.yml -R daugpinigu/tt-strangle-dashboard -f wait=relay-1`
+# arba automatiskai is update.yml watchdog'o (cron/rankinis update runas be gyvo relay).
+on:
+  workflow_dispatch:
+    inputs:
+      wait:
+        description: 'Pauze pries si tiksi = environment wait timer'
+        type: choice
+        options: [relay-15, relay-60, relay-1]
+        default: relay-15
+
+permissions:
+  actions: write
+  contents: read
+
+# Viena grandine: antras relay runas laukia pirmo pabaigos (pirmas ji atsaukia tick'e).
+concurrency:
+  group: tt-strangle-relay
+  cancel-in-progress: false
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: ${{ inputs.wait }}
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TZ: America/New_York
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tick
+        run: python3 relay.py tick
