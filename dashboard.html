@@ -149,15 +149,15 @@
 const DATA = {
   "meta": {
     "startDate": "2026-06-12",
-    "lastUpdate": "2026-11-24 23:18 (auto #162) · kainos per Nasdaq (CBOE feed neveikia), naujos pozicijos pristabdytos",
-    "runCount": 162,
+    "lastUpdate": "2026-11-25 17:08 (auto #163, rytinis) · kainos per Nasdaq (CBOE feed neveikia), naujos pozicijos pristabdytos",
+    "runCount": 163,
     "accountStart": 100000,
     "spyStartPrice": 737.76,
     "qqqStartPrice": 717.12,
     "benchmarkNote": "SPY/QQQ price return (be dividendu; dividendai pridedami ketvircio pabaigoje rankiniu koregavimu)",
-    "sessionDate": "2026-11-24",
+    "sessionDate": "2026-11-25",
     "lastFull": {
-      "morning": "2026-11-24",
+      "morning": "2026-11-25",
       "nightly": "2026-11-24"
     }
   },
@@ -821,46 +821,22 @@ const DATA = {
       "strategy": 92058,
       "spy": 97323,
       "qqq": 88835
+    },
+    {
+      "date": "2026-11-25",
+      "strategy": 90054,
+      "spy": 95291,
+      "qqq": 86003
     }
   ],
   "openPositions": [
-    {
-      "id": 89,
-      "ticker": "CRWD",
-      "opened": "2026-10-27",
-      "expiry": "2026-12-18",
-      "dte": 52,
-      "dteLeft": 24,
-      "ivr": 66.0,
-      "spotOpen": 268.29,
-      "callStrike": 350.0,
-      "callDelta": 0.167,
-      "callPremium": 4.975,
-      "putStrike": 217.5,
-      "putDelta": -0.16,
-      "putPremium": 6.175,
-      "credit": 11.15,
-      "currentCost": 17.38,
-      "contracts": 1,
-      "bpRegT": 3798,
-      "stopCost": 22.3,
-      "targetCost": 5.58,
-      "sizeMode": "full",
-      "earningsInCycle": true,
-      "earningsDate": "2026-12-01",
-      "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress + NASDAQ earnings (auto)",
-      "stressWorstGap": -1536,
-      "notes": "AUTO entry. IVR=66.0 (CBOE-1y). worst 3y 1d gap 20.5%. earnings 2026-12-01 (cikle). full size, 1x kontraktai (risk-sizing ~1.5%).",
-      "pnl": -623,
-      "spotNow": 210.0
-    },
     {
       "id": 95,
       "ticker": "SNOW",
       "opened": "2026-10-30",
       "expiry": "2026-12-18",
       "dte": 49,
-      "dteLeft": 24,
+      "dteLeft": 23,
       "ivr": 63.1,
       "spotOpen": 297.77,
       "callStrike": 390.0,
@@ -870,7 +846,7 @@ const DATA = {
       "putDelta": -0.175,
       "putPremium": 8.75,
       "credit": 14.72,
-      "currentCost": 12.3,
+      "currentCost": 18.41,
       "contracts": 1,
       "bpRegT": 4450,
       "stopCost": 29.44,
@@ -881,8 +857,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress + NASDAQ earnings (auto)",
       "stressWorstGap": -6559,
       "notes": "AUTO entry. IVR=63.1 (CBOE-1y). worst 3y 1d gap 36.5%. earnings 2026-12-02 (cikle). full size, 1x kontraktai (risk-sizing ~1.5%).",
-      "pnl": 242,
-      "spotNow": 271.59
+      "pnl": -369,
+      "spotNow": 257.05
     },
     {
       "id": 97,
@@ -890,7 +866,7 @@ const DATA = {
       "opened": "2026-10-30",
       "expiry": "2026-12-18",
       "dte": 49,
-      "dteLeft": 24,
+      "dteLeft": 23,
       "ivr": 47.7,
       "spotOpen": 38.91,
       "callStrike": 45.0,
@@ -900,7 +876,7 @@ const DATA = {
       "putDelta": -0.127,
       "putPremium": 0.42,
       "credit": 1.02,
-      "currentCost": 0.9,
+      "currentCost": 0.89,
       "contracts": 7,
       "bpRegT": 3437,
       "stopCost": 2.04,
@@ -911,8 +887,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress + NASDAQ earnings (auto)",
       "stressWorstGap": -1897,
       "notes": "AUTO entry. IVR=47.7 (CBOE-1y). worst 3y 1d gap 20.0%. earnings 2026-12-17 (cikle). half size, 7x kontraktai (risk-sizing ~1.5%).",
-      "pnl": 84,
-      "spotNow": 35.7
+      "pnl": 91,
+      "spotNow": 35.605
     },
     {
       "id": 100,
@@ -920,7 +896,7 @@ const DATA = {
       "opened": "2026-11-02",
       "expiry": "2026-12-18",
       "dte": 46,
-      "dteLeft": 24,
+      "dteLeft": 23,
       "ivr": 39.8,
       "spotOpen": 49.62,
       "callStrike": 55.0,
@@ -930,7 +906,7 @@ const DATA = {
       "putDelta": -0.172,
       "putPremium": 0.505,
       "credit": 0.76,
-      "currentCost": 0.47,
+      "currentCost": 0.79,
       "contracts": 2,
       "bpRegT": 1212,
       "stopCost": 1.52,
@@ -941,8 +917,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress + NASDAQ earnings (auto)",
       "stressWorstGap": -326,
       "notes": "AUTO entry. IVR=39.8 (CBOE-1y). worst 3y 1d gap 11.1%. earnings data n/a (Zacks; NASDAQ kalendorius <=7d svarus). half size, 10x kontraktai (risk-sizing ~1.5%). BP headroom sizing down: 10x -> 2x.",
-      "pnl": 58,
-      "spotNow": 48.56
+      "pnl": -6,
+      "spotNow": 47.7012
     },
     {
       "id": 103,
@@ -950,7 +926,7 @@ const DATA = {
       "opened": "2026-11-06",
       "expiry": "2026-12-18",
       "dte": 42,
-      "dteLeft": 24,
+      "dteLeft": 23,
       "ivr": 65.0,
       "spotOpen": 29.39,
       "callStrike": 32.0,
@@ -960,7 +936,7 @@ const DATA = {
       "putDelta": -0.16,
       "putPremium": 0.245,
       "credit": 0.51,
-      "currentCost": 0.32,
+      "currentCost": 0.35,
       "contracts": 3,
       "bpRegT": 1197,
       "stopCost": 1.02,
@@ -971,8 +947,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress + NASDAQ earnings (auto)",
       "stressWorstGap": -153,
       "notes": "AUTO entry. IVR=65.0 (CBOE-1y). worst 3y 1d gap 6.8%. earnings data n/a (Zacks; NASDAQ kalendorius <=7d svarus). full size, 10x kontraktai (risk-sizing ~1.5%). BP headroom sizing down: 10x -> 3x.",
-      "pnl": 57,
-      "spotNow": 28.46
+      "pnl": 48,
+      "spotNow": 28.38
     },
     {
       "id": 104,
@@ -980,7 +956,7 @@ const DATA = {
       "opened": "2026-11-09",
       "expiry": "2026-12-18",
       "dte": 39,
-      "dteLeft": 24,
+      "dteLeft": 23,
       "ivr": 67.1,
       "spotOpen": 164.95,
       "callStrike": 180.0,
@@ -990,7 +966,7 @@ const DATA = {
       "putDelta": -0.18,
       "putPremium": 1.725,
       "credit": 3.22,
-      "currentCost": 2.02,
+      "currentCost": 1.95,
       "contracts": 1,
       "bpRegT": 2126,
       "stopCost": 6.44,
@@ -1001,8 +977,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress + NASDAQ earnings (auto)",
       "stressWorstGap": -322,
       "notes": "AUTO entry. IVR=67.1 (CBOE-1y). worst 3y 1d gap 7.2%. earnings data n/a (Zacks; NASDAQ kalendorius <=7d svarus). full size, 4x kontraktai (risk-sizing ~1.5%). BP headroom sizing down: 4x -> 1x.",
-      "pnl": 120,
-      "spotNow": 158.23
+      "pnl": 127,
+      "spotNow": 159.33
     },
     {
       "id": 105,
@@ -1010,7 +986,7 @@ const DATA = {
       "opened": "2026-11-10",
       "expiry": "2026-12-18",
       "dte": 38,
-      "dteLeft": 24,
+      "dteLeft": 23,
       "ivr": 84.3,
       "spotOpen": 334.1,
       "callStrike": 460.0,
@@ -1020,7 +996,7 @@ const DATA = {
       "putDelta": -0.159,
       "putPremium": 9.7,
       "credit": 15.72,
-      "currentCost": 18.11,
+      "currentCost": 20.17,
       "contracts": 1,
       "bpRegT": 4914,
       "stopCost": 31.44,
@@ -1031,8 +1007,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress + NASDAQ earnings (auto)",
       "stressWorstGap": -5107,
       "notes": "AUTO entry. IVR=84.3 (CBOE-1y). worst 3y 1d gap 32.8%. earnings 2026-11-24 (cikle). full size, 1x kontraktai (risk-sizing ~1.5%).",
-      "pnl": -239,
-      "spotNow": 298.5
+      "pnl": -445,
+      "spotNow": 277.775
     },
     {
       "id": 108,
@@ -1040,7 +1016,7 @@ const DATA = {
       "opened": "2026-11-17",
       "expiry": "2027-01-15",
       "dte": 59,
-      "dteLeft": 52,
+      "dteLeft": 51,
       "ivr": 99.9,
       "spotOpen": 194.82,
       "callStrike": 240.0,
@@ -1050,7 +1026,7 @@ const DATA = {
       "putDelta": -0.158,
       "putPremium": 3.95,
       "credit": 7.28,
-      "currentCost": 6.53,
+      "currentCost": 6.97,
       "contracts": 1,
       "bpRegT": 2676,
       "stopCost": 14.56,
@@ -1061,8 +1037,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress + NASDAQ earnings (auto)",
       "stressWorstGap": -1646,
       "notes": "AUTO entry. IVR=99.9 (CBOE-1y). worst 3y 1d gap 22.6%. earnings 2026-12-02 (cikle). full size, 2x kontraktai (risk-sizing ~1.5%). BP headroom sizing down: 2x -> 1x.",
-      "pnl": 75,
-      "spotNow": 192.66
+      "pnl": 31,
+      "spotNow": 194.32
     },
     {
       "id": 109,
@@ -1070,7 +1046,7 @@ const DATA = {
       "opened": "2026-11-17",
       "expiry": "2027-01-15",
       "dte": 59,
-      "dteLeft": 52,
+      "dteLeft": 51,
       "ivr": 85.0,
       "spotOpen": 115.3,
       "callStrike": 155.0,
@@ -1080,7 +1056,7 @@ const DATA = {
       "putDelta": -0.168,
       "putPremium": 3.625,
       "credit": 5.81,
-      "currentCost": 5.82,
+      "currentCost": 8.2,
       "contracts": 1,
       "bpRegT": 1734,
       "stopCost": 11.62,
@@ -1091,8 +1067,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress + NASDAQ earnings (auto)",
       "stressWorstGap": -2196,
       "notes": "AUTO entry. IVR=85.0 (CBOE-1y). worst 3y 1d gap 35.9%. earnings 2026-12-09 (cikle). full size, 3x kontraktai (risk-sizing ~1.5%). BP headroom sizing down: 3x -> 1x.",
-      "pnl": -1,
-      "spotNow": 109.3
+      "pnl": -239,
+      "spotNow": 101.3373
     },
     {
       "id": 110,
@@ -1100,7 +1076,7 @@ const DATA = {
       "opened": "2026-11-17",
       "expiry": "2027-01-15",
       "dte": 59,
-      "dteLeft": 52,
+      "dteLeft": 51,
       "ivr": 79.3,
       "spotOpen": 24.19,
       "callStrike": 36.0,
@@ -1110,7 +1086,7 @@ const DATA = {
       "putDelta": -0.174,
       "putPremium": 1.035,
       "credit": 1.56,
-      "currentCost": 1.62,
+      "currentCost": 1.89,
       "contracts": 2,
       "bpRegT": 796,
       "stopCost": 3.12,
@@ -1121,8 +1097,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress + NASDAQ earnings (auto)",
       "stressWorstGap": -813,
       "notes": "AUTO entry. IVR=79.3 (CBOE-1y). worst 3y 1d gap 35.9%. earnings data n/a (Zacks; NASDAQ kalendorius <=7d svarus). full size, 10x kontraktai (risk-sizing ~1.5%). BP headroom sizing down: 10x -> 2x.",
-      "pnl": -12,
-      "spotNow": 22.66
+      "pnl": -66,
+      "spotNow": 21.795
     },
     {
       "id": 111,
@@ -1130,7 +1106,7 @@ const DATA = {
       "opened": "2026-11-19",
       "expiry": "2027-01-15",
       "dte": 57,
-      "dteLeft": 52,
+      "dteLeft": 51,
       "ivr": 71.2,
       "spotOpen": 206.72,
       "callStrike": 230.0,
@@ -1140,7 +1116,7 @@ const DATA = {
       "putDelta": -0.146,
       "putPremium": 1.9,
       "credit": 3.92,
-      "currentCost": 3.45,
+      "currentCost": 3.79,
       "contracts": 3,
       "bpRegT": 7377,
       "stopCost": 7.84,
@@ -1151,8 +1127,8 @@ const DATA = {
       "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress + NASDAQ earnings (auto)",
       "stressWorstGap": -1176,
       "notes": "AUTO entry. IVR=71.2 (CBOE-1y). worst 3y 1d gap 8.2%. earnings data n/a (Zacks; NASDAQ kalendorius <=7d svarus). full size, 4x kontraktai (risk-sizing ~1.5%). BP headroom sizing down: 4x -> 3x.",
-      "pnl": 141,
-      "spotNow": 208.61
+      "pnl": 39,
+      "spotNow": 211.2551
     }
   ],
   "closedTrades": [
@@ -4414,6 +4390,39 @@ const DATA = {
       "closed": "2026-11-24",
       "closeCost": 2.0,
       "reason": "50% profit (TP)"
+    },
+    {
+      "id": 89,
+      "ticker": "CRWD",
+      "opened": "2026-10-27",
+      "expiry": "2026-12-18",
+      "dte": 52,
+      "dteLeft": 23,
+      "ivr": 66.0,
+      "spotOpen": 268.29,
+      "callStrike": 350.0,
+      "callDelta": 0.167,
+      "callPremium": 4.975,
+      "putStrike": 217.5,
+      "putDelta": -0.16,
+      "putPremium": 6.175,
+      "credit": 11.15,
+      "currentCost": 24.18,
+      "contracts": 1,
+      "bpRegT": 3798,
+      "stopCost": 22.3,
+      "targetCost": 5.58,
+      "sizeMode": "full",
+      "earningsInCycle": true,
+      "earningsDate": "2026-12-01",
+      "dataSource": "CBOE delayed + CBOE-1y IVR + Yahoo stress + NASDAQ earnings (auto)",
+      "stressWorstGap": -1536,
+      "notes": "AUTO entry. IVR=66.0 (CBOE-1y). worst 3y 1d gap 20.5%. earnings 2026-12-01 (cikle). full size, 1x kontraktai (risk-sizing ~1.5%). | uzdaryta pagal Nasdaq mid (CBOE outage)",
+      "pnl": -1313,
+      "spotNow": 199.73,
+      "closed": "2026-11-25",
+      "closeCost": 24.28,
+      "reason": "2x credit (SL)"
     }
   ],
   "skippedLog": [
