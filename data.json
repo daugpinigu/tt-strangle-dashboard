@@ -1,7 +1,7 @@
 {
   "meta": {
     "startDate": "2026-06-12",
-    "lastUpdate": "2026-11-27 20:15 (intraday, po auto #166) · kainos per Nasdaq (CBOE feed neveikia), naujos pozicijos pristabdytos",
+    "lastUpdate": "2026-11-27 20:30 (intraday, po auto #166) · kainos per Nasdaq (CBOE feed neveikia), naujos pozicijos pristabdytos",
     "runCount": 166,
     "accountStart": 100000,
     "spyStartPrice": 737.76,
@@ -683,8 +683,8 @@
     {
       "date": "2026-11-27",
       "strategy": 92465,
-      "spy": 98684,
-      "qqq": 90668
+      "spy": 98706,
+      "qqq": 90571
     }
   ],
   "openPositions": [
